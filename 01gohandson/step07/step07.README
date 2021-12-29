@@ -1,0 +1,89 @@
+|
+Akira@MBP step07 % go build
+main.go:11:2: no required module provides package github.com/tenntenn/sqlite; to add it:
+	go get github.com/tenntenn/sqlite
+|
+Akira@MBP step07 % cd ..
+|
+Akira@MBP 01gohandson % go mod tidy
+go: finding module for package github.com/tenntenn/sqlite
+go: found github.com/tenntenn/sqlite in github.com/tenntenn/sqlite v1.0.2
+go: downloading modernc.org/sqlite v1.0.0
+go: downloading modernc.org/ccgo v1.0.0
+go: downloading golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: downloading modernc.org/ccir v1.0.0
+go: downloading modernc.org/internal v1.0.0
+go: downloading modernc.org/mathutil v1.0.0
+go: downloading modernc.org/memory v1.0.0
+go: downloading github.com/remyoudompheng/bigfft v0.0.0-20170806203942-52369c62f446
+|
+Akira@MBP 01gohandson % cat go.mod
+module go-sample/01gohandson
+
+go 1.16
+
+require github.com/tenntenn/sqlite v1.0.2
+|
+Akira@MBP 01gohandson % cd step07
+|
+Akira@MBP step07 % go build
+|
+Akira@MBP step07 % ./step07
+[1]入力 [2]最新10件 [3]終了
+>2
+===========
+===========
+[1]入力 [2]最新10件 [3]終了
+>1
+何件入力しますか>3
+品目>byke
+値段>300000
+品目>coffee
+値段>100
+品目>tea
+値段>200
+[1]入力 [2]最新10件 [3]終了
+>2
+===========
+[0003] tea:200円
+[0002] coffee:100円
+[0001] byke:300000円
+===========
+[1]入力 [2]最新10件 [3]終了
+>3
+終了します
+|
+Akira@MBP step07 % ls
+total 12976
+drwxr-xr-x   7 Akira  staff      224 12 29 17:57 ./
+drwxr-xr-x  20 Akira  staff      640 12 29 17:58 ../
+-rw-r--r--   1 Akira  staff      287 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2165 11  7 21:40 accountbook.go
+-rw-r--r--   1 Akira  staff     4192 11 10 15:32 main.go
+-rwxr-xr-x   1 Akira  staff  6620064 12 29 17:57 step07*
+-rw-r--r--   1 Akira  staff     3612 11 12 22:04 step07.README
+|
+Akira@MBP step07 % ls ..
+total 48
+drwxr-xr-x  20 Akira  staff   640 12 29 17:58 ./
+drwxr-xr-x   3 Akira  staff    96 12 29 15:04 ../
+-rw-r--r--   1 Akira  staff  8192 12 29 17:58 accountbook.db
+-rw-r--r--   1 Akira  staff  3119 11 18 22:26 all.README.md
+-rw-r--r--   1 Akira  staff    81 12 29 17:55 go.mod
+-rw-r--r--   1 Akira  staff  1722 12 29 17:55 go.sum
+-rw-r--r--   1 Akira  staff  1930 12 24 21:19 gohandson.README
+drwxr-xr-x   6 Akira  staff   192 12 29 15:09 step01/
+drwxr-xr-x   6 Akira  staff   192 12 29 15:29 step02/
+drwxr-xr-x   6 Akira  staff   192 12 29 15:39 step03/
+drwxr-xr-x   7 Akira  staff   224 12 29 17:46 step04/
+drwxr-xr-x   8 Akira  staff   256 12 29 17:48 step05/
+drwxr-xr-x   9 Akira  staff   288 12 29 17:52 step06/
+drwxr-xr-x   7 Akira  staff   224 12 29 17:57 step07/
+drwxr-xr-x   8 Akira  staff   256 12  6 21:28 step08/
+drwxr-xr-x  11 Akira  staff   352 12  6 21:28 step081/
+drwxr-xr-x  13 Akira  staff   416 12  6 21:28 step09/
+drwxr-xr-x   9 Akira  staff   288 12  6 21:28 step10/
+drwxr-xr-x  11 Akira  staff   352 12  6 21:28 step11/
+drwxr-xr-x  14 Akira  staff   448 12  6 21:28 step111/
+|
+Akira@MBP step07 % 

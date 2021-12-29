@@ -1,0 +1,27 @@
+Akira@MBP step01 % go build
+go: go.mod file not found in current directory or any parent directory; see 'go help modules'
+|
+Akira@MBP step01 % cd ..
+|
+Akira@MBP 01gohandson % go mod init
+go: creating new go.mod: module go-sample/01gohandson
+go: to add module requirements and sums:
+	go mod tidy
+|
+Akira@MBP 01gohandson % cd step01
+|
+Akira@MBP step01 % go build
+|
+Akira@MBP step01 % ls
+total 2384
+drwxr-xr-x   7 Akira  staff      224 12 29 15:06 ./
+drwxr-xr-x  19 Akira  staff      608 12 29 15:06 ../
+-rw-r--r--   1 Akira  staff      413 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff      256 11  4 19:37 main.go
+-rwxr-xr-x   1 Akira  staff  1200608 12 29 15:06 step01*
+-rw-r--r--   1 Akira  staff      579 11 12 21:01 step01.README
+|
+Akira@MBP step01 % ./step01 
+Hello, 世界
+|
+Akira@MBP step01 %

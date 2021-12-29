@@ -1,0 +1,43 @@
+|
+Akira@MBP step09 % go build
+|
+Akira@MBP step09 % ls
+total 23936
+drwxr-xr-x   7 Akira  staff       224 12 29 18:17 ./
+drwxr-xr-x  20 Akira  staff       640 12 29 18:02 ../
+-rw-r--r--   1 Akira  staff       285 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff      2650 10 31 16:59 accountbook.go
+-rw-r--r--   1 Akira  staff      1326 11 10 15:59 handler.go
+-rw-r--r--   1 Akira  staff       844 11 10 15:31 main.go
+-rwxr-xr-x   1 Akira  staff  12235784 12 29 18:17 step09*
+|
+Akira@MBP step09 % ./step09 
+http://localhost:8080 で起動中...
+  C-c C-c^C
+|
+Akira@MBP step09 % ./step09 &
+[1] 22479
+http://localhost:8080 で起動中...
+|
+Akira@MBP step09 % curl http://localhost:8080/
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>家計簿</title>
+	</head>
+	<body>
+		<h1>家計簿</h1>
+		<h2>最新6件</h2><table border="1">
+			<tr><th>品目</th><th>値段</th></tr>
+			<tr><td>coffee</td><td>400円</td></tr>
+			<tr><td>coffee</td><td>300円</td></tr>
+			<tr><td>coffee</td><td>200円</td></tr>
+			<tr><td>tea</td><td>200円</td></tr>
+			<tr><td>coffee</td><td>100円</td></tr>
+			<tr><td>byke</td><td>300000円</td></tr>
+		</table>
+	</body>
+</html>
+|
+Akira@MBP step09 % 

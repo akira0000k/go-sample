@@ -1,0 +1,27 @@
+|
+|
+Akira@MBP step03 % go build
+|
+Akira@MBP step03 % ls
+total 4264
+drwxr-xr-x   7 Akira  staff      224 12 29 15:37 ./
+drwxr-xr-x  19 Akira  staff      608 12 29 15:06 ../
+-rw-r--r--   1 Akira  staff      173 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2271 11  5 16:46 main.go
+-rwxr-xr-x   1 Akira  staff  2167296 12 29 15:37 step03*
+-rw-r--r--   1 Akira  staff     1070 11 12 21:09 step03.README
+|
+Akira@MBP step03 % ./step03
+品目>coffee
+値段>300
+===========
+===========
+|
+Akira@MBP step03 % ./step03 
+品目>coffee
+値段>100
+===========
+コーヒーに100円使いました
+===========
+|
+Akira@MBP step03 % 

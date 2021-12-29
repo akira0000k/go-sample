@@ -1,0 +1,84 @@
+|
+Akira@MBP step11 % go build
+|
+Akira@MBP step11 % ls
+total 23936
+drwxr-xr-x   7 Akira  staff       224 12 29 18:23 ./
+drwxr-xr-x  20 Akira  staff       640 12 29 18:21 ../
+-rw-r--r--   1 Akira  staff       126 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff      2650 10 31 16:59 accountbook.go
+-rw-r--r--   1 Akira  staff      3931 11 10 23:30 handler.go
+-rw-r--r--   1 Akira  staff       928 11 10 23:32 main.go
+-rwxr-xr-x   1 Akira  staff  12236360 12 29 18:23 step11*
+|
+Akira@MBP step11 % ./step11 &
+[1] 22581
+|
+Akira@MBP step11 % http://localhost:8080 で起動中...
+
+|
+Akira@MBP step11 % curl http://localhost:8080
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>家計簿</title>
+	</head>
+	<body>
+		<h1>家計簿</h1>
+		<h2>入力</h2>
+		<form method="post" action="/save">
+			<label for="category">品目</label>
+			<input name="category" type="text">
+			<label for="price">値段</label>
+			<input name="price" type="number">
+			<input type="submit" value="保存">
+		</form>
+
+		<h2>最新7件(<a href="/summary">集計</a>)</h2><table border="1">
+			<tr><th>品目</th><th>値段</th></tr>
+			<tr><td>tea</td><td>300円</td></tr>
+			<tr><td>coffee</td><td>400円</td></tr>
+			<tr><td>coffee</td><td>300円</td></tr>
+			<tr><td>coffee</td><td>200円</td></tr>
+			<tr><td>tea</td><td>200円</td></tr>
+			<tr><td>coffee</td><td>100円</td></tr>
+			<tr><td>byke</td><td>300000円</td></tr>
+		</table>
+	</body>
+</html>
+|
+Akira@MBP step11 % curl http://localhost:8080/summary
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>家計簿 集計</title>
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+		<script>
+			google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+				['品目', '値段'],['byke',  300000 ],['coffee',  1000 ],['tea',  500 ],]);
+		
+		var options = { title: '割合' };
+		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		chart.draw(data, options);
+		}
+		</script>
+	</head>
+	<body>
+		<h1>集計</h1><div id="piechart" style="width:400px; height:300px;"></div>
+		<table border="1">
+			<tr><th>品目</th><th>合計</th><th>平均</th></tr>
+			<tr><td>byke</td><td>300000円</td><td>300000円</tr>
+			<tr><td>coffee</td><td>1000円</td><td>250円</tr>
+			<tr><td>tea</td><td>500円</td><td>250円</tr>
+		</table>
+
+		<div><a href="/">一覧に戻る</a></div>
+	</body>
+|
+Akira@MBP step11 % 

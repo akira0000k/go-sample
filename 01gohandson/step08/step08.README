@@ -1,0 +1,61 @@
+|
+Akira@MBP step08 % ls
+total 24
+drwxr-xr-x   5 Akira  staff   160 12 29 18:00 ./
+drwxr-xr-x  20 Akira  staff   640 12 29 17:58 ../
+-rw-r--r--   1 Akira  staff   210 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff  2848 11  7 22:26 accountbook.go
+-rw-r--r--   1 Akira  staff  3917 11 10 15:32 main.go
+|
+Akira@MBP step08 % go build
+|
+Akira@MBP step08 % ls
+total 12992
+drwxr-xr-x   6 Akira  staff      192 12 29 18:01 ./
+drwxr-xr-x  20 Akira  staff      640 12 29 17:58 ../
+-rw-r--r--   1 Akira  staff      210 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2848 11  7 22:26 accountbook.go
+-rw-r--r--   1 Akira  staff     3917 11 10 15:32 main.go
+-rwxr-xr-x   1 Akira  staff  6636680 12 29 18:01 step08*
+|
+Akira@MBP step08 % ./step08 
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>2
+===========
+[0003] tea:200円
+[0002] coffee:100円
+[0001] byke:300000円
+===========
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>1
+何件入力しますか>3
+品目>coffee
+値段>200
+品目>coffee
+値段>300
+品目>coffee
+値段>400
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>3
+===========
+品目	個数	合計	平均
+byke	1	300000円	300000.00円
+coffee	4	1000円	250.00円
+tea	1	200円	200.00円
+===========
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>4
+終了します
+|
+Akira@MBP step08 % ls
+total 13000
+drwxr-xr-x   8 Akira  staff      256 12 29 18:02 ./
+lrwxr-xr-x   1 Akira  staff       21 12 29 18:02 .#step08.README@ -> Akira@MBP.local.21591
+drwxr-xr-x  20 Akira  staff      640 12 29 18:02 ../
+-rw-r--r--   1 Akira  staff      210 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2848 11  7 22:26 accountbook.go
+-rw-r--r--   1 Akira  staff     3917 11 10 15:32 main.go
+-rwxr-xr-x   1 Akira  staff  6636680 12 29 18:01 step08*
+-rw-r--r--   1 Akira  staff     1290 12 29 18:02 step08.README
+|
+Akira@MBP step08 % 

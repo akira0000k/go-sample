@@ -1,0 +1,87 @@
+|
+Akira@MBP step081 % go build
+go: go-sample/01gohandson/step081: package github.com/mattn/go-sqlite3 imported from implicitly required module; to add missing requirements, run:
+	go get github.com/mattn/go-sqlite3@v1.10.0
+|
+Akira@MBP step081 % go mod init
+go: creating new go.mod: module go-sample/01gohandson/step081
+go: to add module requirements and sums:
+	go mod tidy
+|
+Akira@MBP step081 % go mod tidy
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.9
+|
+Akira@MBP step081 % cat go.mod
+module go-sample/01gohandson/step081
+
+go 1.16
+
+require github.com/mattn/go-sqlite3 v1.14.9
+|
+Akira@MBP step081 % go build
+|
+Akira@MBP step081 % ls
+total 13472
+drwxr-xr-x   9 Akira  staff      288 12 29 18:11 ./
+drwxr-xr-x  20 Akira  staff      640 12 29 18:02 ../
+-rw-r--r--   1 Akira  staff     2888 11 19 10:59 081.README
+-rw-r--r--   1 Akira  staff      210 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2848 11  7 22:26 accountbook.go
+-rw-r--r--   1 Akira  staff       91 12 29 18:10 go.mod
+-rw-r--r--   1 Akira  staff      175 12 29 18:10 go.sum
+-rw-r--r--   1 Akira  staff     4039 11 19 10:57 main.go
+-rwxr-xr-x   1 Akira  staff  6872656 12 29 18:11 step081*
+|
+Akira@MBP step081 % ./step081 
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>2
+===========
+===========
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>1
+何件入力しますか>3
+品目>coffee
+値段>100
+品目>tea
+値段>200
+品目>ice
+値段>300
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>2
+===========
+[0003] ice:300円
+[0002] tea:200円
+[0001] coffee:100円
+===========
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>1
+何件入力しますか>tea
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>[1]入力 [2]最新10件 [3]集計 [4]終了
+>[1]入力 [2]最新10件 [3]集計 [4]終了
+>1
+何件入力しますか>1
+品目>tea
+値段>400
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>2
+===========
+[0004] tea:400円
+[0003] ice:300円
+[0002] tea:200円
+[0001] coffee:100円
+===========
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>3
+===========
+品目	個数	合計	平均
+coffee	1	100円	100.00円
+ice	1	300円	300.00円
+tea	2	600円	300.00円
+===========
+[1]入力 [2]最新10件 [3]集計 [4]終了
+>4
+終了します
+|
+Akira@MBP step081 % 

@@ -1,0 +1,97 @@
+|
+Akira@MBP step06 % go build
+|
+Akira@MBP step06 % ls
+total 4376
+drwxr-xr-x   7 Akira  staff      224 12 29 17:50 ./
+drwxr-xr-x  19 Akira  staff      608 12 29 15:06 ../
+-rw-r--r--   1 Akira  staff      294 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2491 11  6 23:48 accountbook.go
+-rw-r--r--   1 Akira  staff     1596 11  6 23:46 main.go
+-rwxr-xr-x   1 Akira  staff  2223040 12 29 17:50 step06*
+-rw-r--r--   1 Akira  staff     2901 11 12 21:44 step06.README
+|
+Akira@MBP step06 % ./step06 
+[1]入力 [2]最新10件 [3]終了
+>3
+終了します
+|
+Akira@MBP step06 % ./step06 
+[1]入力 [2]最新10件 [3]終了
+>1
+何件入力しますか>3
+品目>coffee
+値段>100
+品目>tea
+値段>200
+品目>ice
+値段>300
+[1]入力 [2]最新10件 [3]終了
+>2
+===========
+coffee:100円
+tea:200円
+ice:300円
+===========
+[1]入力 [2]最新10件 [3]終了
+>1
+何件入力しますか>8
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+品目>coffee
+値段>100
+[1]入力 [2]最新10件 [3]終了
+>2
+===========
+tea:200円
+ice:300円
+coffee:100円
+coffee:100円
+coffee:100円
+coffee:100円
+coffee:100円
+coffee:100円
+coffee:100円
+coffee:100円
+===========
+[1]入力 [2]最新10件 [3]終了
+>3
+終了します
+|
+Akira@MBP step06 % ls
+total 4384
+drwxr-xr-x   8 Akira  staff      256 12 29 17:50 ./
+drwxr-xr-x  19 Akira  staff      608 12 29 15:06 ../
+-rw-r--r--   1 Akira  staff      294 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     2491 11  6 23:48 accountbook.go
+-rw-r--r--   1 Akira  staff      115 12 29 17:51 accountbook.txt
+-rw-r--r--   1 Akira  staff     1596 11  6 23:46 main.go
+-rwxr-xr-x   1 Akira  staff  2223040 12 29 17:50 step06*
+-rw-r--r--   1 Akira  staff     2901 11 12 21:44 step06.README
+|
+Akira@MBP step06 % cat accountbook.txt 
+coffee 100
+tea 200
+ice 300
+coffee 100
+coffee 100
+coffee 100
+coffee 100
+coffee 100
+coffee 100
+coffee 100
+coffee 100
+|
+Akira@MBP step06 % 

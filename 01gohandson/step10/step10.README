@@ -1,0 +1,83 @@
+|
+Akira@MBP step10 % go build
+|
+Akira@MBP step10 % ls
+total 23936
+drwxr-xr-x   7 Akira  staff       224 12 29 18:19 ./
+drwxr-xr-x  20 Akira  staff       640 12 29 18:02 ../
+-rw-r--r--   1 Akira  staff       220 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff      2650 10 31 16:59 accountbook.go
+-rw-r--r--   1 Akira  staff      2419 11 10 22:58 handler.go
+-rw-r--r--   1 Akira  staff       911 11 10 23:07 main.go
+-rwxr-xr-x   1 Akira  staff  12236032 12 29 18:19 step10*
+|
+Akira@MBP step10 % ./step10 &
+[1] 22521
+|
+Akira@MBP step10 % http://localhost:8080 で起動中...
+
+|
+Akira@MBP step10 % 
+|
+Akira@MBP step10 % curl http://localhost:8080
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>家計簿</title>
+	</head>
+	<body>
+		<h1>家計簿</h1>
+		<h2>入力</h2>
+		<form method="post" action="/save">
+			<label for="category">品目</label>
+			<input name="category" type="text">
+			<label for="price">値段</label>
+			<input name="price" type="number">
+			<input type="submit" value="保存">
+		</form>
+
+		<h2>最新6件</h2><table border="1">
+			<tr><th>品目</th><th>値段</th></tr>
+			<tr><td>coffee</td><td>400円</td></tr>
+			<tr><td>coffee</td><td>300円</td></tr>
+			<tr><td>coffee</td><td>200円</td></tr>
+			<tr><td>tea</td><td>200円</td></tr>
+			<tr><td>coffee</td><td>100円</td></tr>
+			<tr><td>byke</td><td>300000円</td></tr>
+		</table>
+	</body>
+</html>
+|
+Akira@MBP step10 % curl http://localhost:8080
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>家計簿</title>
+	</head>
+	<body>
+		<h1>家計簿</h1>
+		<h2>入力</h2>
+		<form method="post" action="/save">
+			<label for="category">品目</label>
+			<input name="category" type="text">
+			<label for="price">値段</label>
+			<input name="price" type="number">
+			<input type="submit" value="保存">
+		</form>
+
+		<h2>最新7件</h2><table border="1">
+			<tr><th>品目</th><th>値段</th></tr>
+			<tr><td>tea</td><td>300円</td></tr>
+			<tr><td>coffee</td><td>400円</td></tr>
+			<tr><td>coffee</td><td>300円</td></tr>
+			<tr><td>coffee</td><td>200円</td></tr>
+			<tr><td>tea</td><td>200円</td></tr>
+			<tr><td>coffee</td><td>100円</td></tr>
+			<tr><td>byke</td><td>300000円</td></tr>
+		</table>
+	</body>
+</html>
+|
+Akira@MBP step10 % 

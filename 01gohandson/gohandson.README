@@ -1,0 +1,64 @@
+Goのエキスパートが教えるGoの魅力、プログラミング基礎入門
+
+https://flxy.jp/article/10744
+
+「上田拓也（@tenntenn）と申します。私はGoogle Developer ExpertでGoを担当しており、Go Conferenceの主催やgolang.tokyoなど各種コミュニティ活動も行っています。また、Goを採用している各社の技術顧問として開発現場にも携わっています。
+
+今回はGoの基礎をご紹介します。私が公開している「Goで家計簿アプリを作ろう」というハンズオンの内容も一部抜粋して解説しているので、Goをはじめたばかりの初心者の方はぜひ参考にしていただけると嬉しいです。」
+
+
+
+
+
+家計簿アプリを作ろう
+https://github.com/gohandson/accountbook-ja
+
+
+
+
+Last login: Sun Oct 31 10:13:23 on console
+Akira@MBP ~ % go env GOPATH
+/Users/Akira/go
+
+Akira@MBP ~ % cd go
+
+Akira@MBP go % mkdir -p src/github.com/gohandson
+
+Akira@MBP go % git clone https://github.com/gohandson/accountbook-ja
+Cloning into 'accountbook-ja'...
+remote: Enumerating objects: 151, done.
+remote: Counting objects: 100% (151/151), done.
+remote: Compressing objects: 100% (71/71), done.
+remote: Total 151 (delta 73), reused 144 (delta 68), pack-reused 0
+Receiving objects: 100% (151/151), 35.26 KiB | 135.00 KiB/s, done.
+Resolving deltas: 100% (73/73), done.
+
+Akira@MBP go % cd accountbook-ja
+
+Akira@MBP accountbook-ja % ls
+total 40
+drwxr-xr-x   8 Akira  staff   256 10 31 16:59 ./
+drwxr-xr-x   7 Akira  staff   224 10 31 16:59 ../
+drwxr-xr-x  12 Akira  staff   384 10 31 16:59 .git/
+-rw-r--r--   1 Akira  staff    10 10 31 16:59 .gitignore
+-rw-r--r--   1 Akira  staff  1934 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff  9315 10 31 16:59 by-nc.eu.png
+drwxr-xr-x  13 Akira  staff   416 10 31 16:59 skeleton/
+drwxr-xr-x  13 Akira  staff   416 10 31 16:59 solution/
+
+Akira@MBP accountbook-ja %
+
+
+
+step01      Hello world
+step02      console data i/o
+step03      type Item struct
+step04      input Item append slice
+step05      text database
+step06      text database
+step07      sqlite
+step08      summary
+step081     summary (go-sqlite3)
+step09      http browse
+step10      http edit
+step11      http summary

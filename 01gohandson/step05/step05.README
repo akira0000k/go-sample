@@ -1,0 +1,43 @@
+|
+|
+Akira@MBP step05 % go build
+|
+Akira@MBP step05 % ls
+total 4400
+drwxr-xr-x   6 Akira  staff      192 12 29 17:48 ./
+drwxr-xr-x  19 Akira  staff      608 12 29 15:06 ../
+-rw-r--r--   1 Akira  staff      223 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff     3225 11  6 19:21 main.go
+-rwxr-xr-x   1 Akira  staff  2239808 12 29 17:48 step05*
+-rw-r--r--   1 Akira  staff     1438 11 12 21:31 step05.README
+|
+Akira@MBP step05 % ./step05 
+何件入力しますか>3
+品目>coffee
+値段>100
+品目>tea
+値段>200
+品目>ice
+値段>300
+===========
+coffee:100円
+tea:200円
+ice:300円
+===========
+|
+Akira@MBP step05 % ls
+total 4408
+drwxr-xr-x   7 Akira  staff      224 12 29 17:48 ./
+drwxr-xr-x  19 Akira  staff      608 12 29 15:06 ../
+-rw-r--r--   1 Akira  staff      223 10 31 16:59 README.md
+-rw-r--r--   1 Akira  staff       27 12 29 17:48 accountbook.txt
+-rw-r--r--   1 Akira  staff     3225 11  6 19:21 main.go
+-rwxr-xr-x   1 Akira  staff  2239808 12 29 17:48 step05*
+-rw-r--r--   1 Akira  staff     1438 11 12 21:31 step05.README
+|
+Akira@MBP step05 % cat accountbook.txt 
+coffee 100
+tea 200
+ice 300
+|
+Akira@MBP step05 % 
