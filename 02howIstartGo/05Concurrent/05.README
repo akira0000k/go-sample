@@ -1,0 +1,75 @@
+|
+Akira@MBP 05Concurrent % go build
+|
+Akira@MBP 05Concurrent % ls
+total 13744
+drwxr-xr-x  5 Akira  staff      160  1  3 00:26 ./
+drwxr-xr-x  9 Akira  staff      288  1  2 20:29 ../
+-rw-r--r--  1 Akira  staff     1210 11 12 19:42 05.README
+-rwxr-xr-x  1 Akira  staff  7023936  1  3 00:26 05Concurrent*
+-rw-r--r--  1 Akira  staff     4188  1  3 00:23 main.go
+|
+Akira@MBP 05Concurrent % ./05Concurrent &
+[1] 45591
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/tokyo
+2022/01/03 00:26:28 weatherUnderground: tokyo not available
+2022/01/03 00:26:28 openWeatherMap: tokyo: 276.80
+{"city":"tokyo","temp":276.8,"took":"218.111769ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/harbin
+2022/01/03 00:26:59 openWeatherMap: harbin: 257.12
+2022/01/03 00:26:59 weatherUnderground: harbin not available
+{"city":"harbin","temp":257.12,"took":"256.224098ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/beijin
+2022/01/03 00:27:06 openWeatherMap: beijin: not available
+2022/01/03 00:27:06 weatherUnderground: beijin not available
+2022/01/03 00:27:06 no result
+invalid character 'S' looking for beginning of value
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/pekin
+2022/01/03 00:27:13 openWeatherMap: pekin: 267.09
+2022/01/03 00:27:13 weatherUnderground: pekin not available
+{"city":"pekin","temp":267.09,"took":"127.591878ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/naha
+2022/01/03 00:27:26 openWeatherMap: naha: 291.09
+2022/01/03 00:27:26 weatherUnderground: naha not available
+{"city":"naha","temp":291.09,"took":"156.560066ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/sapporo
+2022/01/03 00:27:36 openWeatherMap: sapporo: 267.49
+2022/01/03 00:27:36 weatherUnderground: sapporo not available
+{"city":"sapporo","temp":267.49,"took":"145.104069ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/rio
+2022/01/03 00:27:43 openWeatherMap: rio: 288.11
+2022/01/03 00:27:43 weatherUnderground: rio not available
+{"city":"rio","temp":288.11,"took":"152.769879ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/paris
+2022/01/03 00:27:49 openWeatherMap: paris: 286.94
+2022/01/03 00:27:49 weatherUnderground: paris not available
+{"city":"paris","temp":286.94,"took":"145.505142ms"}
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/NewYork
+2022/01/03 00:27:56 openWeatherMap: NewYork: not available
+2022/01/03 00:27:56 weatherUnderground: NewYork not available
+2022/01/03 00:27:56 no result
+invalid character 'S' looking for beginning of value
+|
+Akira@MBP 05Concurrent % curl http://localhost:8080/weather/NY
+2022/01/03 00:28:09 openWeatherMap: NY: not available
+2022/01/03 00:28:09 weatherUnderground: NY not available
+2022/01/03 00:28:09 no result
+invalid character 'S' looking for beginning of value
+|
+Akira@MBP 05Concurrent % kill 45591
+|
+Akira@MBP 05Concurrent % 
+[1]  + terminated  ./05Concurrent
+|
+Akira@MBP 05Concurrent % 
+
+Process shell finished

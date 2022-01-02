@@ -1,0 +1,87 @@
+
+WEATHER UNDERGROUND
+https://www.wunderground.com/
+
+Join,   Log in
+
+API KEYS
+Your API Key
+No API key. You must own a Personal Weather Station in order to generate an API key.
+
+|
+Akira@MBP 04Interface % go build
+|
+Akira@MBP 04Interface % ls
+total 13752
+drwxr-xr-x  7 Akira  staff      224  1  2 23:41 ./
+drwxr-xr-x  9 Akira  staff      288  1  2 20:29 ../
+-rw-r--r--  1 Akira  staff     1192 11 12 19:40 04.README
+-rwxr-xr-x  1 Akira  staff  7023872  1  2 23:50 04Interface*
+-rw-r--r--  1 Akira  staff     3345  1  2 23:40 main.go
+-rw-r--r--  1 Akira  staff     2652  1  2 22:30 main.go~
+-rw-r--r--  1 Akira  staff      176  1  2 21:37 wunder.txt
+|
+Akira@MBP 04Interface % ./04Interface &
+[1] 45156
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/tokyo
+2022/01/02 23:51:26 weatherUnderground: tokyo not available
+2022/01/02 23:51:26 openWeatherMap: tokyo: 276.95
+{"city":"tokyo","temp":276.95,"took":"431.968647ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/harbin
+2022/01/02 23:51:39 weatherUnderground: harbin not available
+2022/01/02 23:51:39 openWeatherMap: harbin: 258.12
+{"city":"harbin","temp":258.12,"took":"274.566188ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/beijin
+2022/01/02 23:51:55 weatherUnderground: beijin not available
+2022/01/02 23:51:55 openWeatherMap: beijin: not available
+2022/01/02 23:51:55 no result
+not available
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/pekin
+2022/01/02 23:52:04 weatherUnderground: pekin not available
+2022/01/02 23:52:04 openWeatherMap: pekin: 268.09
+{"city":"pekin","temp":268.09,"took":"334.073624ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/naha
+2022/01/02 23:52:16 weatherUnderground: naha not available
+2022/01/02 23:52:16 openWeatherMap: naha: 291.09
+{"city":"naha","temp":291.09,"took":"362.060529ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/sapporo
+2022/01/02 23:52:26 weatherUnderground: sapporo not available
+2022/01/02 23:52:26 openWeatherMap: sapporo: 268.52
+{"city":"sapporo","temp":268.52,"took":"571.998557ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/rio
+2022/01/02 23:52:31 weatherUnderground: rio not available
+2022/01/02 23:52:32 openWeatherMap: rio: 289.44
+{"city":"rio","temp":289.44,"took":"545.878832ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/paris
+2022/01/02 23:52:38 weatherUnderground: paris not available
+2022/01/02 23:52:38 openWeatherMap: paris: 287.06
+{"city":"paris","temp":287.06,"took":"243.850561ms"}
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/NewYork
+2022/01/02 23:52:54 weatherUnderground: NewYork not available
+2022/01/02 23:52:55 openWeatherMap: NewYork: not available
+2022/01/02 23:52:55 no result
+not available
+|
+Akira@MBP 04Interface % curl http://localhost:8080/weather/NY
+2022/01/02 23:53:02 weatherUnderground: NY not available
+2022/01/02 23:53:03 openWeatherMap: NY: not available
+2022/01/02 23:53:03 no result
+not available
+|
+Akira@MBP 04Interface % kill 45156
+|
+Akira@MBP 04Interface % 
+[1]  + terminated  ./04Interface
+|
+Akira@MBP 04Interface % 
+
+Process shell finished

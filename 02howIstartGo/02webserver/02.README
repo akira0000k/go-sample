@@ -1,0 +1,27 @@
+|
+Akira@MBP 02webserver % go build
+|
+Akira@MBP 02webserver % ls
+total 11856
+drwxr-xr-x  5 Akira  staff      160  1  2 20:31 ./
+drwxr-xr-x  9 Akira  staff      288  1  2 20:29 ../
+-rw-r--r--  1 Akira  staff      629 11 11 21:24 02.README
+-rwxr-xr-x  1 Akira  staff  6059776  1  2 20:31 02webserver*
+-rw-r--r--  1 Akira  staff      198 11 11 21:21 main.go
+|
+Akira@MBP 02webserver % ./02webserver &
+[1] 42797
+|
+Akira@MBP 02webserver % curl http://localhost:8080/
+hello!
+|
+Akira@MBP 02webserver % 
+zsh: you have running jobs.
+|
+Akira@MBP 02webserver %   C-c C-c
+|
+Akira@MBP 02webserver % 
+zsh: warning: 1 jobs SIGHUPed
+[1]  + hangup     ./02webserver
+
+Process shell exited abnormally with code 130

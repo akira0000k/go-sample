@@ -1,0 +1,57 @@
+OpenWeather
+https://openweathermap.org
+
+Create Account,  Sign In
+
+Create API Key     ->APPID=
+
+http://api.openweathermap.org/data/2.5/weather?APPID=????????????????????????????????&q=tokyo
+
+
+|
+Akira@MBP 03Weather % go build
+|
+Akira@MBP 03Weather % ls
+total 13728
+drwxr-xr-x  6 Akira  staff      192  1  2 20:50 ./
+drwxr-xr-x  9 Akira  staff      288  1  2 20:29 ../
+-rw-r--r--  1 Akira  staff     1116 11 12 19:37 03.README
+-rwxr-xr-x  1 Akira  staff  7015232  1  2 20:50 03Weather*
+-rw-r--r--  1 Akira  staff     1214  1  2 20:50 main.go
+|
+Akira@MBP 03Weather % ./03Weather &
+[1] 43085
+|
+Akira@MBP 03Weather % curl http://localhost:8080/hello
+hello!
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather
+<a href="/weather/">Moved Permanently</a>.
+
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather/tokyo
+{"name":"Tokyo","main":{"temp":277.79}}
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather/harbin
+{"name":"Harbin","main":{"temp":256.12}}
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather/pekin
+{"name":"Beijing","main":{"temp":270.87}}
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather/asahikawa
+{"name":"Asahikawa","main":{"temp":270.71}}
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather/naha
+{"name":"Naha","main":{"temp":290.09}}
+|
+Akira@MBP 03Weather % curl http://localhost:8080/weather/rio
+{"name":"Rio","main":{"temp":292.24}}
+|
+Akira@MBP 03Weather % 
+zsh: you have running jobs.
+|
+Akira@MBP 03Weather % 
+zsh: warning: 1 jobs SIGHUPed
+[1]  + hangup     ./03Weather
+
+Process shell finished
