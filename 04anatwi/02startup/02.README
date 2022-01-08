@@ -1,0 +1,80 @@
+-*- coding: utf-8-unix -*-
+|
+Akira@MBP 02startup % go mod init
+go: creating new go.mod: module go-sample/04anatwi/02startup
+go: to add module requirements and sums:
+	go mod tidy
+|
+Akira@MBP 02startup % go mod tidy
+go: finding module for package github.com/ChimeraCoder/anaconda
+go: found github.com/ChimeraCoder/anaconda in github.com/ChimeraCoder/anaconda v2.0.0+incompatible
+go: finding module for package github.com/garyburd/go-oauth/oauth
+go: finding module for package github.com/azr/backoff
+go: finding module for package github.com/ChimeraCoder/tokenbucket
+go: finding module for package github.com/dustin/go-jsonpointer
+go: found github.com/ChimeraCoder/tokenbucket in github.com/ChimeraCoder/tokenbucket v0.0.0-20131201223612-c5a927568de7
+go: found github.com/azr/backoff in github.com/azr/backoff v0.0.0-20160115115103-53511d3c7330
+go: found github.com/dustin/go-jsonpointer in github.com/dustin/go-jsonpointer v0.0.0-20160814072949-ba0abeacc3dc
+go: found github.com/garyburd/go-oauth/oauth in github.com/garyburd/go-oauth v0.0.0-20180319155456-bca2e7f09a17
+go: finding module for package golang.org/x/net/context
+go: finding module for package github.com/dustin/gojson
+go: found github.com/dustin/gojson in github.com/dustin/gojson v0.0.0-20160307161227-2e71ec9dd5ad
+go: found golang.org/x/net/context in golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d
+|
+Akira@MBP 02startup % go run startup.go
+i= 0
+RT @coopsapporo_pr: ✨シャウエッセンの大袋が✨
+✨めちゃ安で買える(かも)!?✨
+
+購入総数が増えるたび値引�
+i= 1
+2022年のスタートアップ、宇宙関連に�
+i= 2
+【全国の選ばれしスタートアップが、オンラインで集結！】マッチングイベン
+i= 3
+RT @baranohana_10: 【悲報】岸田首相「スタートアップ支援」で荒ぶるも、東証マザーズ
+i= 4
+RT @__kopy__: 【悲報】岸田首相「スタートアップ支援」で荒ぶるも、東証マザーズ連�
+i= 5
+RT @ShogoNu: 2/ 
+
+(2)製品のヒアリングは投資家やVCにした方が良い
+
+(1)にも関連してるけど、投資家やVCの方�
+i= 6
+RT @ShogoNu: 1/ CESを見てて、大手企業が製品開発する際にした方が良い事を素直に書いてみます
+
+(1)製品の�
+i= 7
+SEになると調子に乗りまくるやつがいるみたいだけど、スタートアップなんか�
+i= 8
+RT @shiro_yaiyai: おはようございます。
+#seibulions 新人合同自主トレに来ています。アップ後、いきなりポー�
+i= 9
+RT @tsuchinao83: とても本質を突いたディスカッションの記事だ。
+
+万物の本質である「気合と根性」のワー�
+i= 10
+RT @Startuptimez: この特集はしっかり読む。
+
+というのも、ユニコーンってSaaSとかクリプトに多い印象ある�
+i= 11
+RT @yoyoyo_f: 〜自己紹介〜
+○香川県出身
+○1992/12/01 生まれの執行役員
+スタートアップベンチャー✈️
+↓
+�
+i= 12
+Star☆Tのいちについてよ〜いスタート！
+1月1日放送分がYoutubeにアップされました〜♪
+
+豊田カフェでの公開収録の�
+i= 13
+スタートアップ界隈っていうグループに半年以上
+i= 14
+技術系スタートアップが在宅勤務のソフトウェ�
+|
+Akira@MBP 02startup % 
+
+Process shell finished

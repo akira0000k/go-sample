@@ -1,0 +1,60 @@
+anacondaをimportするだけのメインを作り、モジュールをダウンロードさせる。
+
+
+|
+Akira@MBP 01main % cat main.go
+package main
+ 
+import (
+	"github.com/ChimeraCoder/anaconda"
+)
+ 
+func main() {
+	anaconda.NewTwitterApiWithCredentials(
+		"access-token",
+		"access-token-secret",
+		"consumer-key",
+		"consumer-secret",
+	)
+}
+|
+Akira@MBP 01main % go mod init
+go: creating new go.mod: module go-sample/04anatwi/01main
+go: to add module requirements and sums:
+	go mod tidy
+|
+Akira@MBP 01main % go mod tidy
+go: finding module for package github.com/ChimeraCoder/anaconda
+go: found github.com/ChimeraCoder/anaconda in github.com/ChimeraCoder/anaconda v2.0.0+incompatible
+go: finding module for package github.com/azr/backoff
+go: finding module for package github.com/dustin/go-jsonpointer
+go: finding module for package github.com/garyburd/go-oauth/oauth
+go: finding module for package github.com/ChimeraCoder/tokenbucket
+go: found github.com/ChimeraCoder/tokenbucket in github.com/ChimeraCoder/tokenbucket v0.0.0-20131201223612-c5a927568de7
+go: found github.com/azr/backoff in github.com/azr/backoff v0.0.0-20160115115103-53511d3c7330
+go: found github.com/dustin/go-jsonpointer in github.com/dustin/go-jsonpointer v0.0.0-20160814072949-ba0abeacc3dc
+go: found github.com/garyburd/go-oauth/oauth in github.com/garyburd/go-oauth v0.0.0-20180319155456-bca2e7f09a17
+go: finding module for package golang.org/x/net/context
+go: finding module for package github.com/dustin/gojson
+go: downloading golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d
+go: found github.com/dustin/gojson in github.com/dustin/gojson v0.0.0-20160307161227-2e71ec9dd5ad
+go: found golang.org/x/net/context in golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d
+|
+Akira@MBP 01main % cat go.mod
+module go-sample/04anatwi/01main
+
+go 1.16
+
+require (
+	github.com/ChimeraCoder/anaconda v2.0.0+incompatible
+	github.com/ChimeraCoder/tokenbucket v0.0.0-20131201223612-c5a927568de7 // indirect
+	github.com/azr/backoff v0.0.0-20160115115103-53511d3c7330 // indirect
+	github.com/dustin/go-jsonpointer v0.0.0-20160814072949-ba0abeacc3dc // indirect
+	github.com/dustin/gojson v0.0.0-20160307161227-2e71ec9dd5ad // indirect
+	github.com/garyburd/go-oauth v0.0.0-20180319155456-bca2e7f09a17 // indirect
+	golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d // indirect
+)
+|
+Akira@MBP 01main % 
+
+Process shell finished
