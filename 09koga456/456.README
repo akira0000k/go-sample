@@ -1,11 +1,11 @@
 https://dev.classmethod.jp/articles/go-sample-rest-api/
 
-Go言語で基本的なCRUD操作を行うREST APIを作成
+「Go言語で基本的なCRUD操作を行うREST APIを作成
 
 Javaのエンジニアだった私がGo言語でREST APIを作る上で学んだことをまとめています。
 プロジェクト構成、単体テスト、Dockerイメージの作成など実際にREST APIを開発する上で必要だと思われる要素を盛り込みつつサンプルプロジェクトを作成していきます。
 古賀裕太
-2021.09.22
+2021.09.22」
 
 
 手順1 docker
