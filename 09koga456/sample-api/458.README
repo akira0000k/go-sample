@@ -1,0 +1,130 @@
+自前のmysqlを停止しました。
+
+
+
+Last login: Sun Jan  9 20:28:21 on ttys000
+|
+Akira@MBP ~ % brew services stop mysql
+Stopping `mysql`... (might take a while)
+==> Successfully stopped `mysql` (label: homebrew.mxcl.mysql)
+|
+Akira@MBP ~ % cda
+|
+Akira@MBP src % ls
+total 40
+drwxr-xr-x  10 Akira  staff   320  1  9 20:22 ./
+drwxr-xr-x   7 Akira  staff   224 12 29 14:52 ../
+-rw-r--r--@  1 Akira  staff  8196  1  3 13:03 .DS_Store
+-rwxr--r--   1 Akira  staff   228 12 29 14:52 checkbin.sh*
+-rwxr--r--   1 Akira  staff   232 12  6 21:28 checkbin.sh~*
+drwxr-xr-x   3 Akira  staff    96  1  9 20:22 github.com/
+drwxr-xr-x   7 Akira  staff   224  1  8 15:11 go-sample/
+drwxr-xr-x   7 Akira  staff   224  1  7 00:35 go-study/
+drwxr-xr-x  10 Akira  staff   320 12 17 22:11 practice/
+drwxr-xr-x  14 Akira  staff   448  1  8 18:41 sample/
+|
+Akira@MBP src % cd github.com/koga456/sample-api
+|
+Akira@MBP sample-api % ls
+total 40
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ./
+drwxr-xr-x   8 Akira  staff  256  1  9 20:34 ../
+drwxr-xr-x  12 Akira  staff  384 12  6 18:17 .git/
+-rw-r--r--   1 Akira  staff  284 11 24 21:27 .gitignore
+-rw-r--r--   1 Akira  staff  349 11 24 21:27 Makefile
+-rw-r--r--   1 Akira  staff  197 11 24 21:27 README.md
+drwxr-xr-x   5 Akira  staff  160 11 24 21:27 build/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 cmd/
+drwxr-xr-x   7 Akira  staff  224 11 24 21:27 controller/
+-rw-r--r--   1 Akira  staff  105 11 24 21:27 go.mod
+-rw-r--r--   1 Akira  staff  179 11 24 21:27 go.sum
+drwxr-xr-x   4 Akira  staff  128 11 24 21:27 model/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 test/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 test_results/
+|
+Akira@MBP sample-api % make serve
+Attaching to sample-api-db, sample-api-server
+sample-api-db      | 2022-01-09 11:37:18+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.25-1debian10 started.
+sample-api-db      | 2022-01-09 11:37:18+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+sample-api-db      | 2022-01-09 11:37:18+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.25-1debian10 started.
+sample-api-db      | 2022-01-09 11:37:18+00:00 [Note] [Entrypoint]: Initializing database files
+sample-api-db      | 2022-01-09T11:37:18.316092Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.25) initializing of server in progress as process 43
+sample-api-db      | 2022-01-09T11:37:18.323064Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+sample-api-db      | 2022-01-09T11:37:18.769933Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+sample-api-db      | 2022-01-09T11:37:19.790599Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+sample-api-db      | 2022-01-09 11:37:23+00:00 [Note] [Entrypoint]: Database files initialized
+sample-api-db      | 2022-01-09 11:37:23+00:00 [Note] [Entrypoint]: Initializing certificates
+sample-api-db      | Ignoring -days; not generating a certificate
+sample-api-db      | Generating a RSA private key
+sample-api-db      | ...........................................................................................................................+++++
+sample-api-db      | ...............+++++
+sample-api-db      | writing new private key to 'ca-key.pem'
+sample-api-db      | -----
+sample-api-db      | Ignoring -days; not generating a certificate
+sample-api-db      | Generating a RSA private key
+sample-api-db      | ...........+++++
+sample-api-db      | .+++++
+sample-api-db      | writing new private key to 'server-key.pem'
+sample-api-db      | -----
+sample-api-db      | Ignoring -days; not generating a certificate
+sample-api-db      | Generating a RSA private key
+sample-api-db      | ...................................................+++++
+sample-api-db      | ..................................................................................................+++++
+sample-api-db      | writing new private key to 'client-key.pem'
+sample-api-db      | -----
+sample-api-db      | 2022-01-09 11:37:23+00:00 [Note] [Entrypoint]: Certificates initialized
+sample-api-db      | 2022-01-09 11:37:23+00:00 [Note] [Entrypoint]: Starting temporary server
+sample-api-db      | 2022-01-09T11:37:23.771916Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.25) starting as process 110
+sample-api-db      | 2022-01-09T11:37:23.803647Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+sample-api-db      | 2022-01-09T11:37:23.961331Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+sample-api-db      | 2022-01-09T11:37:24.054791Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+sample-api-db      | 2022-01-09T11:37:24.187679Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+sample-api-db      | 2022-01-09T11:37:24.207780Z 0 [Warning] [MY-011302] [Server] Plugin mysqlx reported: 'Failed at SSL configuration: "SSL context is not usable without certificate and private key"'
+sample-api-db      | 2022-01-09T11:37:24.208985Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.25'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+sample-api-db      | 2022-01-09 11:37:24+00:00 [Note] [Entrypoint]: Temporary server started.
+sample-api-db      | Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+sample-api-db      | Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+sample-api-db      | Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+sample-api-db      | Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+sample-api-db      | 2022-01-09 11:37:26+00:00 [Note] [Entrypoint]: Creating database todo
+sample-api-db      |
+sample-api-db      | 2022-01-09 11:37:26+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/00_grant_to_app_user.sql
+sample-api-db      |
+sample-api-db      |
+sample-api-db      | 2022-01-09 11:37:26+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/01_todo.sql
+sample-api-db      |
+sample-api-db      |
+sample-api-db      | 2022-01-09 11:37:26+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/99_insert_data.sql
+sample-api-db      |
+sample-api-db      |
+sample-api-db      | 2022-01-09 11:37:26+00:00 [Note] [Entrypoint]: Stopping temporary server
+sample-api-db      | 2022-01-09T11:37:26.563221Z 14 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.25).
+sample-api-db      | 2022-01-09T11:37:27.795942Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.25)  MySQL Community Server - GPL.
+sample-api-db      | 2022-01-09 11:37:28+00:00 [Note] [Entrypoint]: Temporary server stopped
+sample-api-db      |
+sample-api-db      | 2022-01-09 11:37:28+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+sample-api-db      |
+sample-api-db      | 2022-01-09T11:37:28.817228Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.25) starting as process 1
+sample-api-db      | 2022-01-09T11:37:28.826416Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+sample-api-db      | 2022-01-09T11:37:28.978428Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+sample-api-db      | 2022-01-09T11:37:29.075183Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+sample-api-db      | 2022-01-09T11:37:29.144829Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+sample-api-db      | 2022-01-09T11:37:29.162735Z 0 [Warning] [MY-011302] [Server] Plugin mysqlx reported: 'Failed at SSL configuration: "SSL context is not usable without certificate and private key"'
+sample-api-db      | 2022-01-09T11:37:29.163538Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.25'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+
+
+^CGracefully stopping... (press Ctrl+C again to force)
+[+] Running 1/1
+ ⠿ Container sample-api-server  Stopped                                                                                                                                                                                                            0.2s
+ ⠋ Container sample-api-db      Stopping                                                                                                                                                                                                           0.0s
+[+] Running 0/0
+ ⠿ Container sample-api-db      Error while Killing                                                                                                                                                                                                0.0s
+ ⠿ Container sample-api-server  Error while Killing                                                                                                                                                                                                0.0s
+ERRO[5999] got 3 SIGTERM/SIGINTs, forcing shutdown
+[+] Running 2/2e] Error 1
+ ⠿ Container sample-api-server  Stopped                                                                                                                                                                                                            0.2s
+ ⠿ Container sample-api-db      Stopped                                                                                                                                                                                                            0.3s
+canceledP sample-api %
+
+|
+Akira@MBP sample-api %

@@ -1,0 +1,202 @@
+DBアクセステスト..OK
+
+
+
+Last login: Sun Jan  9 20:35:49 on ttys001
+|
+Akira@MBP ~ % cda
+|
+Akira@MBP src % ls
+total 40
+drwxr-xr-x  10 Akira  staff   320  1  9 20:22 ./
+drwxr-xr-x   7 Akira  staff   224 12 29 14:52 ../
+-rw-r--r--@  1 Akira  staff  8196  1  3 13:03 .DS_Store
+-rwxr--r--   1 Akira  staff   228 12 29 14:52 checkbin.sh*
+-rwxr--r--   1 Akira  staff   232 12  6 21:28 checkbin.sh~*
+drwxr-xr-x   3 Akira  staff    96  1  9 20:22 github.com/
+drwxr-xr-x   7 Akira  staff   224  1  8 15:11 go-sample/
+drwxr-xr-x   7 Akira  staff   224  1  7 00:35 go-study/
+drwxr-xr-x  10 Akira  staff   320 12 17 22:11 practice/
+drwxr-xr-x  14 Akira  staff   448  1  8 18:41 sample/
+|
+Akira@MBP src % cd sample
+|
+Akira@MBP sample % ls
+total 40
+drwxr-xr-x  14 Akira  staff   448  1  8 18:41 ./
+drwxr-xr-x  10 Akira  staff   320  1  9 20:22 ../
+-rw-r--r--@  1 Akira  staff  8196  1  4 19:33 .DS_Store
+drwxr-xr-x  12 Akira  staff   384 11 24 19:11 03sasagawa/
+drwxr-xr-x   5 Akira  staff   160 11 19 00:57 05sqliteSE/
+drwxr-xr-x   4 Akira  staff   128 11 19 01:32 06onlineCourse/
+drwxr-xr-x   4 Akira  staff   128 11 20 01:19 07LoveOnTech/
+drwxr-xr-x   5 Akira  staff   160 11 20 18:45 08BlackEveryday/
+drwxr-xr-x  17 Akira  staff   544  1  9 00:01 09koga456/
+drwxr-xr-x   8 Akira  staff   256 12  4 01:09 10IIJBootC/
+drwxr-xr-x  13 Akira  staff   416  1  3 22:14 11kwashi/
+drwxr-xr-x   5 Akira  staff   160  1  8 18:11 del/
+-rw-r--r--   1 Akira  staff   112 12  2 16:19 go.mod
+-rw-r--r--   1 Akira  staff   354 12  2 16:19 go.sum
+|
+Akira@MBP sample % cd 09koga456
+|
+Akira@MBP 09koga456 % ls
+total 112
+drwxr-xr-x  17 Akira  staff   544  1  9 00:01 ./
+drwxr-xr-x  14 Akira  staff   448  1  8 18:41 ../
+-rw-r--r--@  1 Akira  staff  6148  1  4 19:33 .DS_Store
+-rw-r--r--   1 Akira  staff  3928  1  8 20:18 01mysql.README
+-rw-r--r--   1 Akira  staff  3427  1  8 20:31 02mysql.login.txt
+-rw-r--r--   1 Akira  staff  6703  1  8 21:33 03mysql.createdb.txt
+-rw-r--r--   1 Akira  staff  6739  1  8 21:41 04mysql.OK.txt
+-rw-r--r--   1 Akira  staff   738  1  8 21:58 456.README
+-rw-r--r--   1 Akira  staff   693  1  8 21:44 456.README~
+drwxr-xr-x  19 Akira  staff   608  1  8 22:23 new-api/
+drwxr-xr-x  15 Akira  staff   480  1  9 00:06 new-api2/
+drwxr-xr-x  21 Akira  staff   672  1  8 22:08 sample-api/
+drwxr-xr-x  11 Akira  staff   352 11 25 22:36 srcs/
+-rwxr--r--   1 Akira  staff    75 11 28 00:49 todo-del.sh*
+-rwxr--r--   1 Akira  staff    50 11 27 22:20 todo-get.sh*
+-rwxr--r--   1 Akira  staff   183 11 28 01:03 todo-put.sh*
+-rwxr--r--   1 Akira  staff   192 11 28 01:05 todo-upd.sh*
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sun, 09 Jan 2022 11:38:55 GMT
+Content-Length: 346
+
+[
+		{
+				"id": 3,
+				"title": "ゴミ出し",
+				"content": "次の火曜日は燃えないゴミの日なので忘れないように"
+		},
+		{
+				"id": 2,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 1,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		}
+]%
+|
+Akira@MBP 09koga456 % todo-del.sh 2
+zsh: command not found: todo-del.sh
+|
+Akira@MBP 09koga456 % ./todo-del.sh 2
++ curl -i -X DELETE localhost:8080/todos/2
+HTTP/1.1 204 No Content
+Date: Sun, 09 Jan 2022 11:39:30 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sun, 09 Jan 2022 11:39:40 GMT
+Content-Length: 251
+
+[
+		{
+				"id": 3,
+				"title": "ゴミ出し",
+				"content": "次の火曜日は燃えないゴミの日なので忘れないように"
+		},
+		{
+				"id": 1,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		}
+]%
+|
+Akira@MBP 09koga456 % ./todo-upd.sh 1
++ curl -i -X PUT -H 'Content-Type: application/json' -d '{"title":"test", "content":"変更テスト"}' localhost:8080/todos/1
+HTTP/1.1 204 No Content
+Date: Sun, 09 Jan 2022 11:40:16 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sun, 09 Jan 2022 11:40:21 GMT
+Content-Length: 219
+
+[
+		{
+				"id": 3,
+				"title": "ゴミ出し",
+				"content": "次の火曜日は燃えないゴミの日なので忘れないように"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "変更テスト"
+		}
+]%
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/4
+Date: Sun, 09 Jan 2022 11:42:25 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/5
+Date: Sun, 09 Jan 2022 11:42:26 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/6
+Date: Sun, 09 Jan 2022 11:42:27 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sun, 09 Jan 2022 11:42:31 GMT
+Content-Length: 456
+
+[
+		{
+				"id": 6,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 5,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 4,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 3,
+				"title": "ゴミ出し",
+				"content": "次の火曜日は燃えないゴミの日なので忘れないように"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "変更テスト"
+		}
+]%
+|
+Akira@MBP 09koga456 %

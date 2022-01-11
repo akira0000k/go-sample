@@ -1,0 +1,204 @@
+|
+Akira@MBP new-api2 % ./make.sh
++ rm go.mod
++ rm go.sum
++ go mod init
+go: creating new go.mod: module go-sample/09koga456/new-api2
+go: to add module requirements and sums:
+	go mod tidy
++ go mod tidy
+go: finding module for package github.com/go-sql-driver/mysql
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.10
+go: found github.com/go-sql-driver/mysql in github.com/go-sql-driver/mysql v1.6.0
++ CGO_ENABLED=0
++ GOOS=linux
++ GOARCH=amd64
++ go build -o crudapi -ldflags '-s -w' ./cmd/sample-api/main.go
+|
+Akira@MBP new-api2 % ls
+total 15944
+drwxr-xr-x  15 Akira  staff      480  1 12 00:24 ./
+drwxr-xr-x  14 Akira  staff      448  1 12 00:18 ../
+-rw-r--r--   1 Akira  staff     6148  1 10 20:59 .DS_Store
+-rw-r--r--   1 Akira  staff      143  1  9 00:06 Makefile
+drwxr-xr-x   3 Akira  staff       96 11 24 22:09 cmd/
+drwxr-xr-x  13 Akira  staff      416  1 12 00:22 controller/
+-rwxr-xr-x   1 Akira  staff  8128456  1 12 00:24 crudapi*
+-rw-r--r--   1 Akira  staff      135  1 12 00:24 go.mod
+-rw-r--r--   1 Akira  staff      356  1 12 00:24 go.sum
+-rwxr--r--   1 Akira  staff      165  1 12 00:24 make.sh*
+drwxr-xr-x   7 Akira  staff      224  1 12 00:23 model/
+drwxr-xr-x   4 Akira  staff      128  1 12 00:21 test/
+-rw-r--r--   1 Akira  staff      956  1 10 19:21 test.README
+drwxr-xr-x   3 Akira  staff       96  1 12 00:23 test_results/
+|
+Akira@MBP new-api2 % ./crudapi &
+[1] 28755
+|
+Akira@MBP new-api2 % main start... 
+sqlite3-NewTodoRepository() called
+repository.init() called...
+Db = sql.Open("sqlite3")
+2022/01/12 00:24:46 Create todo table...
+2022/01/12 00:24:46 todo table created
+main http.HandleFunc(/todos/
+server.ListenAndServe()
+
+|
+Akira@MBP new-api2 % 
+|
+Akira@MBP new-api2 % ../todo-get.sh
++ curl -i localhost:8080/todos/
+GetTodos returns 0 records
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:25:00 GMT
+Content-Length: 4
+
+|
+Akira@MBP new-api2 % cd ..
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+InsertTodo {0 test テストです。} <nil>
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/1
+Date: Tue, 11 Jan 2022 15:25:13 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+InsertTodo {0 test テストです。} <nil>
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/2
+Date: Tue, 11 Jan 2022 15:25:15 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+InsertTodo {0 test テストです。} <nil>
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/3
+Date: Tue, 11 Jan 2022 15:25:16 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+InsertTodo {0 test テストです。} <nil>
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/4
+Date: Tue, 11 Jan 2022 15:25:17 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+GetTodos returns 4 records
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:25:23 GMT
+Content-Length: 318
+
+[
+		{
+				"id": 4,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 3,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 2,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % ./todo-upd.sh
++ curl -i -X PUT -H 'Content-Type: application/json' -d '{"title":"test", "content":"変更テスト"}' localhost:8080/todos/4
+UpdateTodo {4 test 変更テスト} <nil>
+HTTP/1.1 204 No Content
+Date: Tue, 11 Jan 2022 15:25:33 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+GetTodos returns 4 records
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:25:37 GMT
+Content-Length: 315
+
+[
+		{
+				"id": 4,
+				"title": "test",
+				"content": "変更テスト"
+		},
+		{
+				"id": 3,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 2,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % ./todo-del.sh
++ curl -i -X DELETE localhost:8080/todos/4
+DeleteTodo 4 <nil>
+HTTP/1.1 204 No Content
+Date: Tue, 11 Jan 2022 15:25:52 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+GetTodos returns 3 records
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:25:58 GMT
+Content-Length: 239
+
+[
+		{
+				"id": 3,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 2,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % 
+zsh: you have running jobs.
+|
+Akira@MBP 09koga456 % 
+zsh: warning: 1 jobs SIGHUPed
+[1]  + hangup     ./crudapi
+
+Process shell finished

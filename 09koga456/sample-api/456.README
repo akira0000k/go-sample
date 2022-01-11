@@ -1,0 +1,221 @@
+https://dev.classmethod.jp/articles/go-sample-rest-api/
+
+「Go言語で基本的なCRUD操作を行うREST APIを作成
+
+Javaのエンジニアだった私がGo言語でREST APIを作る上で学んだことをまとめています。
+プロジェクト構成、単体テスト、Dockerイメージの作成など実際にREST APIを開発する上で必要だと思われる要素を盛り込みつつサンプルプロジェクトを作成していきます。
+
+古賀裕太
+2021.09.22」
+
+
+
+Akira@MBP koga456 % pwd
+/Users/Akira/go/src/github.com/koga456
+
+Akira@MBP koga456 % git clone https://github.com/koga456/sample-api
+Cloning into 'sample-api'...
+remote: Enumerating objects: 73, done.        
+remote: Counting objects: 100% (73/73), done.        
+remote: Compressing objects: 100% (52/52), done.        
+remote: Total 73 (delta 19), reused 57 (delta 11), pack-reused 0        
+Receiving objects: 100% (73/73), 11.46 KiB | 68.00 KiB/s, done.
+Resolving deltas: 100% (19/19), done.
+
+Akira@MBP koga456 % ls
+total 0
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x   4 Akira  staff  128 11 24 21:26 ../
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 sample-api/
+
+Akira@MBP koga456 % ls -R sample-api
+total 40
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ./
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 ../
+drwxr-xr-x  12 Akira  staff  384 11 24 21:27 .git/
+-rw-r--r--   1 Akira  staff  284 11 24 21:27 .gitignore
+-rw-r--r--   1 Akira  staff  349 11 24 21:27 Makefile
+-rw-r--r--   1 Akira  staff  197 11 24 21:27 README.md
+drwxr-xr-x   5 Akira  staff  160 11 24 21:27 build/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 cmd/
+drwxr-xr-x   7 Akira  staff  224 11 24 21:27 controller/
+-rw-r--r--   1 Akira  staff  105 11 24 21:27 go.mod
+-rw-r--r--   1 Akira  staff  179 11 24 21:27 go.sum
+drwxr-xr-x   4 Akira  staff  128 11 24 21:27 model/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 test/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 test_results/
+
+
+sample-api/build:
+total 8
+drwxr-xr-x   5 Akira  staff  160 11 24 21:27 ./
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ../
+drwxr-xr-x   5 Akira  staff  160 11 24 21:27 db/
+-rw-r--r--   1 Akira  staff  443 11 24 21:27 docker-compose.yml
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 sample-api/
+
+sample-api/build/db:
+total 16
+drwxr-xr-x  5 Akira  staff  160 11 24 21:27 ./
+drwxr-xr-x  5 Akira  staff  160 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff  148 11 24 21:27 Dockerfile
+-rw-r--r--  1 Akira  staff  252 11 24 21:27 custom.cnf
+drwxr-xr-x  5 Akira  staff  160 11 24 21:27 sql/
+
+sample-api/build/db/sql:
+total 24
+drwxr-xr-x  5 Akira  staff  160 11 24 21:27 ./
+drwxr-xr-x  5 Akira  staff  160 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff  120 11 24 21:27 00_grant_to_app_user.sql
+-rw-r--r--  1 Akira  staff  350 11 24 21:27 01_todo.sql
+-rw-r--r--  1 Akira  staff  325 11 24 21:27 99_insert_data.sql
+
+sample-api/build/sample-api:
+total 8
+drwxr-xr-x  3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x  5 Akira  staff  160 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff  316 11 24 21:27 Dockerfile
+
+sample-api/cmd:
+total 0
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ../
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 sample-api/
+
+sample-api/cmd/sample-api:
+total 8
+drwxr-xr-x  3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x  3 Akira  staff   96 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff  386 11 24 21:27 main.go
+
+sample-api/controller:
+total 40
+drwxr-xr-x   7 Akira  staff   224 11 24 21:27 ./
+drwxr-xr-x  14 Akira  staff   448 11 24 21:27 ../
+drwxr-xr-x   3 Akira  staff    96 11 24 21:27 dto/
+-rw-r--r--   1 Akira  staff   523 11 24 21:27 router.go
+-rw-r--r--   1 Akira  staff  1555 11 24 21:27 router_test.go
+-rw-r--r--   1 Akira  staff  2425 11 24 21:27 todo_controller.go
+-rw-r--r--   1 Akira  staff  4598 11 24 21:27 todo_controller_test.go
+
+sample-api/controller/dto:
+total 8
+drwxr-xr-x  3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x  7 Akira  staff  224 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff  295 11 24 21:27 todo_dto.go
+
+sample-api/model:
+total 0
+drwxr-xr-x   4 Akira  staff  128 11 24 21:27 ./
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ../
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 entity/
+drwxr-xr-x   4 Akira  staff  128 11 24 21:27 repository/
+
+sample-api/model/entity:
+total 8
+drwxr-xr-x  3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x  4 Akira  staff  128 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff   88 11 24 21:27 todo_entity.go
+
+sample-api/model/repository:
+total 16
+drwxr-xr-x  4 Akira  staff   128 11 24 21:27 ./
+drwxr-xr-x  4 Akira  staff   128 11 24 21:27 ../
+-rw-r--r--  1 Akira  staff   308 11 24 21:27 database.go
+-rw-r--r--  1 Akira  staff  1516 11 24 21:27 todo_repository.go
+
+sample-api/test:
+total 8
+drwxr-xr-x   3 Akira  staff    96 11 24 21:27 ./
+drwxr-xr-x  14 Akira  staff   448 11 24 21:27 ../
+-rw-r--r--   1 Akira  staff  2284 11 24 21:27 mock.go
+
+sample-api/test_results:
+total 0
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 ./
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ../
+-rw-r--r--   1 Akira  staff    0 11 24 21:27 .gitkeep
+Akira@MBP koga456 % 
+
+
+
+
+
+やみくもにmake serveをやってみる。
+Akira@MBP src % cd github.com
+Akira@MBP github.com % cd koga456
+Akira@MBP koga456 % cd sample-api
+Akira@MBP sample-api % ls
+total 40
+drwxr-xr-x  14 Akira  staff  448 11 24 21:27 ./
+drwxr-xr-x   7 Akira  staff  224 12  4 23:34 ../
+drwxr-xr-x  12 Akira  staff  384 12  6 18:13 .git/
+-rw-r--r--   1 Akira  staff  284 11 24 21:27 .gitignore
+-rw-r--r--   1 Akira  staff  349 11 24 21:27 Makefile
+-rw-r--r--   1 Akira  staff  197 11 24 21:27 README.md
+drwxr-xr-x   5 Akira  staff  160 11 24 21:27 build/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 cmd/
+drwxr-xr-x   7 Akira  staff  224 11 24 21:27 controller/
+-rw-r--r--   1 Akira  staff  105 11 24 21:27 go.mod
+-rw-r--r--   1 Akira  staff  179 11 24 21:27 go.sum
+drwxr-xr-x   4 Akira  staff  128 11 24 21:27 model/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 test/
+drwxr-xr-x   3 Akira  staff   96 11 24 21:27 test_results/
+Akira@MBP sample-api % make serve
+Traceback (most recent call last):
+  File "urllib3/connectionpool.py", line 670, in urlopen
+  File "urllib3/connectionpool.py", line 392, in _make_request
+  File "http/client.py", line 1255, in request
+  File "http/client.py", line 1301, in _send_request
+  File "http/client.py", line 1250, in endheaders
+  File "http/client.py", line 1010, in _send_output
+  File "http/client.py", line 950, in send
+  File "docker/transport/unixconn.py", line 43, in connect
+FileNotFoundError: [Errno 2] No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "requests/adapters.py", line 439, in send
+  File "urllib3/connectionpool.py", line 726, in urlopen
+  File "urllib3/util/retry.py", line 410, in increment
+  File "urllib3/packages/six.py", line 734, in reraise
+  File "urllib3/connectionpool.py", line 670, in urlopen
+  File "urllib3/connectionpool.py", line 392, in _make_request
+  File "http/client.py", line 1255, in request
+  File "http/client.py", line 1301, in _send_request
+  File "http/client.py", line 1250, in endheaders
+  File "http/client.py", line 1010, in _send_output
+  File "http/client.py", line 950, in send
+  File "docker/transport/unixconn.py", line 43, in connect
+urllib3.exceptions.ProtocolError: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "docker/api/client.py", line 214, in _retrieve_server_version
+  File "docker/api/daemon.py", line 181, in version
+  File "docker/utils/decorators.py", line 46, in inner
+  File "docker/api/client.py", line 237, in _get
+  File "requests/sessions.py", line 543, in get
+  File "requests/sessions.py", line 530, in request
+  File "requests/sessions.py", line 643, in send
+  File "requests/adapters.py", line 498, in send
+requests.exceptions.ConnectionError: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "docker-compose", line 3, in <module>
+  File "compose/cli/main.py", line 81, in main
+  File "compose/cli/main.py", line 200, in perform_command
+  File "compose/cli/command.py", line 60, in project_from_options
+  File "compose/cli/command.py", line 152, in get_project
+  File "compose/cli/docker_client.py", line 41, in get_client
+  File "compose/cli/docker_client.py", line 170, in docker_client
+  File "docker/api/client.py", line 197, in __init__
+  File "docker/api/client.py", line 221, in _retrieve_server_version
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+[9136] Failed to execute script docker-compose
+make: *** [serve] Error 255
+Akira@MBP sample-api %

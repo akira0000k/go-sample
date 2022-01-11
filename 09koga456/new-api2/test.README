@@ -1,0 +1,26 @@
+|
+Akira@MBP new-api2 % cat Makefile
+unit-test:
+	@go test ./... -coverprofile=./test_results/cover.out && go tool cover -html=./test_results/cover.out -o ./test_results/cover.html
+|
+Akira@MBP new-api2 % make unit-test
+?   	go-sample/09koga456/new-api2/cmd/sample-api	[no test files]
+ok  	go-sample/09koga456/new-api2/controller	0.343s	coverage: 100.0% of statements
+?   	go-sample/09koga456/new-api2/controller/dto	[no test files]
+?   	go-sample/09koga456/new-api2/model	[no test files]
+?   	go-sample/09koga456/new-api2/model/entity	[no test files]
+?   	go-sample/09koga456/new-api2/model/repositorylite	[no test files]
+?   	go-sample/09koga456/new-api2/model/repositorymy	[no test files]
+?   	go-sample/09koga456/new-api2/test	[no test files]
+|
+Akira@MBP new-api2 % ls test_results/
+total 24
+drwxr-xr-x   5 Akira  staff   160  1 12 00:44 ./
+drwxr-xr-x  20 Akira  staff   640  1 12 00:40 ../
+-rw-r--r--   1 Akira  staff     0 11 24 21:27 .gitkeep
+-rw-r--r--   1 Akira  staff  6600  1 12 00:44 cover.html
+-rw-r--r--   1 Akira  staff  1881  1 12 00:44 cover.out
+|
+Akira@MBP new-api2 % 
+
+Process shell finished

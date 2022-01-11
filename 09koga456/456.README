@@ -1,0 +1,58 @@
+https://dev.classmethod.jp/articles/go-sample-rest-api/
+
+Go言語で基本的なCRUD操作を行うREST APIを作成
+
+Javaのエンジニアだった私がGo言語でREST APIを作る上で学んだことをまとめています。
+プロジェクト構成、単体テスト、Dockerイメージの作成など実際にREST APIを開発する上で必要だと思われる要素を盛り込みつつサンプルプロジェクトを作成していきます。
+古賀裕太
+2021.09.22
+
+
+手順1 docker
+1. githubからソースを正しいディレクトリに展開する
+   cd ~/go/src/github.com/koga456
+   git clone https://github.com/koga456/sample-api
+
+2. dockerアプリを立ち上げる
+   mysqlは自前では起動しない
+   
+3. make serve
+   dockerでdbとapiが起動する
+
+4. db追加削除などのコマンドを発行する
+
+このときのmysql
+・ユーザ名
+todo-app
+・パスワード
+todo-password
+・db名
+todo
+・テーブル名
+todo
+・ホスト名(docker)
+sample-api-db
+データソース名は
+todo-app:todo-password@tcp(sample-api-db:3306)/todo?charset=utf8
+
+
+
+
+
+手順2 dockerを使わない
+new-api/crudapi を起動..sqlite3
+new-api/crudapi mysql 引数..mysql
+
+自前のmysql
+・ユーザ名
+todo-app
+・パスワード
+todo-password
+・db名
+todo
+・テーブル名
+todo
+・ホスト名
+localhost       <--sample-api-db から変更
+データソース名は
+todo-app:todo-password@tcp(localhost:3306)/todo?charset=utf8

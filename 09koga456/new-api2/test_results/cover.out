@@ -1,0 +1,27 @@
+mode: set
+go-sample/09koga456/new-api2/controller/router.go:12.43,14.2 1 1
+go-sample/09koga456/new-api2/controller/router.go:16.78,17.18 1 1
+go-sample/09koga456/new-api2/controller/router.go:18.13,19.23 1 1
+go-sample/09koga456/new-api2/controller/router.go:20.14,21.23 1 1
+go-sample/09koga456/new-api2/controller/router.go:22.13,23.22 1 1
+go-sample/09koga456/new-api2/controller/router.go:24.16,25.25 1 1
+go-sample/09koga456/new-api2/controller/router.go:26.10,27.21 1 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:18.65,20.2 1 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:22.76,24.16 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:29.2,30.26 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:34.2,40.17 5 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:24.16,27.3 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:30.26,32.3 1 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:43.76,51.16 7 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:56.2,57.20 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:51.16,54.3 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:60.75,62.16 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:67.2,74.16 7 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:79.2,79.20 1 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:62.16,65.3 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:74.16,77.3 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:82.78,84.16 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:89.2,90.16 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:95.2,95.20 1 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:84.16,87.3 2 1
+go-sample/09koga456/new-api2/controller/todo_controller.go:90.16,93.3 2 1

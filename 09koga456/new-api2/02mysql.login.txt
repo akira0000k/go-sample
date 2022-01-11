@@ -1,0 +1,85 @@
+|
+Akira@MBP sql % mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+|
+Akira@MBP sql % brew services start mysql
+==> Successfully started `mysql` (label: homebrew.mxcl.mysql)
+|
+Akira@MBP sql % mysql < 00_grant_to_app_user.sql 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+|
+Akira@MBP sql % mysql
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+|
+Akira@MBP sql % mysql --password
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.25 Homebrew
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE USER 'todo-app'@'%' IDENTIFIED BY 'todo-password';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE ON todo.* TO 'todo-app'@'%';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show user;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user' at line 1
+mysql> show users;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'users' at line 1
+mysql> display users;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'display users' at line 1
+mysql> display user;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'display user' at line 1
+mysql> exit;
+Bye
+|
+Akira@MBP sql % mysql -u todo-app
+ERROR 1045 (28000): Access denied for user 'todo-app'@'localhost' (using password: NO)
+|
+Akira@MBP sql % mysql -u todo-app -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.25 Homebrew
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables
+    -> ;
+ERROR 1046 (3D000): No database selected
+mysql> CREATE TABLE IF NOT EXISTS todo (
+    id             BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title          VARCHAR(40) NOT NULL,
+    content       VARCHAR(100) NOT NULL,
+    created_at     TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    updated_at     TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp
+);
+CREATE TABLE IF NOT EXISTS todo (
+    ->     id             BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->     title          VARCHAR(40) NOT NULL,
+    ->     content       VARCHAR(100) NOT NULL,
+    ->     created_at     TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    ->     updated_at     TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> exit;
+Bye
+|
+Akira@MBP sql % 
+
+Process shell finished

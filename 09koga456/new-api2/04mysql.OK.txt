@@ -1,0 +1,265 @@
+|
+Akira@MBP new-api % ./crudapi mysql
+main start... mysql
+mysql-NewTodoRepository() called
+--------------------
+todo-app:todo-password@tcp(sample-api-db:3306)/todo?charset=utf8
+--------------------
+main http.HandleFunc(/todos/
+server.ListenAndServe()
+  C-c C-c^C
+|
+Akira@MBP new-api % ./crudapi mysql &
+[1] 13748
+main start... mysql
+mysql-NewTodoRepository() called
+--------------------
+todo-app:todo-password@tcp(sample-api-db:3306)/todo?charset=utf8
+--------------------
+main http.HandleFunc(/todos/
+server.ListenAndServe()
+|
+Akira@MBP new-api % ./todo-get.sh
++ curl -i localhost:8080/todos/
+2022/01/08 21:33:51 dial tcp: lookup sample-api-db: no such host
+HTTP/1.1 500 Internal Server Error
+Date: Sat, 08 Jan 2022 12:33:51 GMT
+Content-Length: 0
+
+|
+Akira@MBP new-api % ./make.sh
++ rm go.mod
++ rm go.sum
++ go mod init
+go: creating new go.mod: module sample/09koga456/new-api
+go: to add module requirements and sums:
+	go mod tidy
++ go mod tidy
+go: finding module for package github.com/go-sql-driver/mysql
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.10
+go: found github.com/go-sql-driver/mysql in github.com/go-sql-driver/mysql v1.6.0
++ CGO_ENABLED=0
++ GOOS=linux
++ GOARCH=amd64
++ go build -o crudapi -ldflags '-s -w' ./cmd/sample-api/main.go
+|
+Akira@MBP new-api % ./crudapi mysql &
+[2] 13791
+|
+Akira@MBP new-api % main start... mysql
+mysql-NewTodoRepository() called
+--------------------
+todo-app:todo-password@tcp(localhost:3306)/todo?charset=utf8
+--------------------
+main http.HandleFunc(/todos/
+server.ListenAndServe()
+
+[2]  + done       ./crudapi mysql
+|
+Akira@MBP new-api % 
+zsh: you have running jobs.
+|
+Akira@MBP new-api % 
+zsh: warning: 1 jobs SIGHUPed
+[1]  + hangup     ./crudapi mysql
+
+Process shell finished
+|
+Akira@MBP new-api % ./crudapi mysql &
+[1] 13797
+main start... mysql
+mysql-NewTodoRepository() called
+--------------------
+todo-app:todo-password@tcp(localhost:3306)/todo?charset=utf8
+--------------------
+main http.HandleFunc(/todos/
+server.ListenAndServe()
+|
+|
+|
+|
+|
+Akira@MBP new-api % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 08 Jan 2022 12:36:12 GMT
+Content-Length: 4
+
+|
+Akira@MBP new-api % ./todo-get.sh &
+[2] 13806
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 08 Jan 2022 12:36:29 GMT
+Content-Length: 4
+
+|
+Akira@MBP new-api % 
+[2]  + done       ./todo-get.sh
+|
+Akira@MBP new-api % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/1
+Date: Sat, 08 Jan 2022 12:36:59 GMT
+Content-Length: 0
+
+|
+Akira@MBP new-api % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 08 Jan 2022 12:37:05 GMT
+Content-Length: 81
+
+[
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP new-api % mysql -u todo-api -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'todo-api'@'localhost' (using password: YES)
+|
+Akira@MBP new-api % mysql -u todo-app -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.25 Homebrew
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> INSERT INTO todo (title, content) VALUES ('買い物', '今日の帰りに夕食の材料を買う');
+ERROR 1046 (3D000): No database selected
+mysql> use todo;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> INSERT INTO todo (title, content) VALUES ('買い物', '今日の帰りに夕食の材料を買う');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO todo (title, content) VALUES ('勉強', 'TOEICの勉強を１時間やる');
+INSERT INTO todo (title, content) VALUES ('ゴミ出し', '次の火曜日は燃えないゴミの日なので忘れないように');
+INSERT INTO todo (title, content) VALUES ('勉強', 'TOEICの勉強を１時間やる');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO todo (title, content) VALUES ('ゴミ出し', '次の火曜日は燃えないゴミの日なので忘れないように');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> exit;
+Bye
+|
+Akira@MBP new-api % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 08 Jan 2022 12:39:26 GMT
+Content-Length: 425
+
+[
+		{
+				"id": 4,
+				"title": "ゴミ出し",
+				"content": "次の火曜日は燃えないゴミの日なので忘れないように"
+		},
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP new-api % ./todo-upd.sh
++ curl -i -X PUT -H 'Content-Type: application/json' -d '{"title":"test", "content":"変更テスト"}' localhost:8080/todos/4
+HTTP/1.1 204 No Content
+Date: Sat, 08 Jan 2022 12:40:13 GMT
+
+|
+Akira@MBP new-api % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 08 Jan 2022 12:40:17 GMT
+Content-Length: 360
+
+[
+		{
+				"id": 4,
+				"title": "test",
+				"content": "変更テスト"
+		},
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP new-api % ./todo-del.sh 
++ curl -i -X DELETE localhost:8080/todos/4
+HTTP/1.1 204 No Content
+Date: Sat, 08 Jan 2022 12:40:47 GMT
+
+|
+Akira@MBP new-api % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 08 Jan 2022 12:40:59 GMT
+Content-Length: 284
+
+[
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP new-api % 
+zsh: you have running jobs.
+|
+Akira@MBP new-api % 
+zsh: warning: 1 jobs SIGHUPed
+[1]  + hangup     ./crudapi mysql
+
+Process shell finished

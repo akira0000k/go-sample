@@ -1,0 +1,213 @@
+|
+Akira@MBP new-api2 % brew services start mysql
+==> Successfully started `mysql` (label: homebrew.mxcl.mysql)
+|
+Akira@MBP new-api2 % mysql --version
+mysql  Ver 8.0.25 for macos10.15 on x86_64 (Homebrew)
+|
+Akira@MBP new-api2 % ./crudapi mysql &
+[1] 29168
+main start... mysql
+mysql-NewTodoRepository() called
+--------------------
+todo-app:todo-password@tcp(localhost:3306)/todo?charset=utf8
+--------------------
+main http.HandleFunc(/todos/
+server.ListenAndServe()
+|
+Akira@MBP new-api2 % cd ..
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:35:49 GMT
+Content-Length: 284
+
+[
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % ./todo-put.sh
++ curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"test", "content":"テストです。"}' localhost:8080/todos/
+HTTP/1.1 201 Created
+Location: localhost:8080/todos/5
+Date: Tue, 11 Jan 2022 15:35:55 GMT
+Content-Length: 0
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:35:59 GMT
+Content-Length: 363
+
+[
+		{
+				"id": 5,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % ./todo-upd.sh
++ curl -i -X PUT -H 'Content-Type: application/json' -d '{"title":"test", "content":"変更テスト"}' localhost:8080/todos/4
+HTTP/1.1 204 No Content
+Date: Tue, 11 Jan 2022 15:36:04 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:36:08 GMT
+Content-Length: 363
+
+[
+		{
+				"id": 5,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % ./todo-del.sh
++ curl -i -X DELETE localhost:8080/todos/4
+HTTP/1.1 204 No Content
+Date: Tue, 11 Jan 2022 15:36:13 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:36:18 GMT
+Content-Length: 363
+
+[
+		{
+				"id": 5,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		},
+		{
+				"id": 1,
+				"title": "test",
+				"content": "テストです。"
+		}
+|
+Akira@MBP 09koga456 % ./todo-del.sh 1
++ curl -i -X DELETE localhost:8080/todos/1
+HTTP/1.1 204 No Content
+Date: Tue, 11 Jan 2022 15:36:50 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:36:56 GMT
+Content-Length: 284
+
+[
+		{
+				"id": 5,
+				"title": "test",
+				"content": "テストです。"
+		},
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		}
+|
+Akira@MBP 09koga456 % ./todo-del.sh 5
++ curl -i -X DELETE localhost:8080/todos/5
+HTTP/1.1 204 No Content
+Date: Tue, 11 Jan 2022 15:37:02 GMT
+
+|
+Akira@MBP 09koga456 % ./todo-get.sh
++ curl -i localhost:8080/todos/
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 11 Jan 2022 15:37:04 GMT
+Content-Length: 205
+
+[
+		{
+				"id": 3,
+				"title": "勉強",
+				"content": "TOEICの勉強を１時間やる"
+		},
+		{
+				"id": 2,
+				"title": "買い物",
+				"content": "今日の帰りに夕食の材料を買う"
+		}
+|
+Akira@MBP 09koga456 % 
+zsh: you have running jobs.
+|
+Akira@MBP 09koga456 % 
+zsh: warning: 1 jobs SIGHUPed
+[1]  + hangup     ./crudapi mysql
+
+Process shell finished

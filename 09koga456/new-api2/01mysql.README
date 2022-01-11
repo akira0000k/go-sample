@@ -1,0 +1,119 @@
+|
+Akira@MBP sql % sql
+zsh: command not found: sql
+|
+Akira@MBP sql % mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+|
+Akira@MBP sql % mysql --version
+mysql  Ver 8.0.25 for macos10.15 on x86_64 (Homebrew)
+|
+Akira@MBP sql % brew services start mysql
+==> Tapping homebrew/services
+Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services'...
+remote: Enumerating objects: 1656, done.        
+remote: Counting objects: 100% (535/535), done.        
+remote: Compressing objects: 100% (393/393), done.        
+remote: Total 1656 (delta 229), reused 354 (delta 129), pack-reused 1121        
+Receiving objects: 100% (1656/1656), 480.79 KiB | 2.63 MiB/s, done.
+Resolving deltas: 100% (706/706), done.
+Tapped 1 command (44 files, 615.8KB).
+==> Successfully started `mysql` (label: homebrew.mxcl.mysql)
+|
+Akira@MBP sql % ps -ef |grep sql
+  502 12117     1   0  8:11PM ??         0:00.03 /bin/sh /usr/local/opt/mysql/bin/mysqld_safe --datadir=/usr/local/var/mysql
+  502 12210 12117   0  8:11PM ??         0:05.79 /usr/local/opt/mysql/bin/mysqld --basedir=/usr/local/opt/mysql --datadir=/usr/local/var/mysql --plugin-dir=/usr/local/opt/mysql/lib/plugin --log-error=MBP.local.err --pid-file=MBP.local.pid
+  502 12221 11411   0  8:12PM ttys000    0:00.00 grep sql
+|
+Akira@MBP sql % mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Connecting to MySQL using a blank password.
+
+VALIDATE PASSWORD COMPONENT can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD component?
+
+Press y|Y for Yes, any other key for No: 
+Please set the password for root here.
+
+New password: 
+
+Re-enter new password: 
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : 
+
+ ... skipping.
+
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : 
+
+ ... skipping.
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : 
+
+ ... skipping.
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : 
+
+ ... skipping.
+All done! 
+|
+Akira@MBP sql % brew services start mysql
+|
+Akira@MBP sql % mysql --user=root --password
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.25 Homebrew
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> exit;
+Bye
+|
+Akira@MBP sql % brew services stop mysql
+Stopping `mysql`... (might take a while)
+==> Successfully stopped `mysql` (label: homebrew.mxcl.mysql)
+|
+Akira@MBP sql % 
+
+Process shell finished
