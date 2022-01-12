@@ -1,0 +1,78 @@
+Akira@MBP 07LoveOnTech % ls
+total 16
+drwxr-xr-x   4 Akira  staff   128 11 20 00:37 ./
+drwxr-xr-x  10 Akira  staff   320 11 19 20:47 ../
+-rw-r--r--   1 Akira  staff  2301 11 20 00:37 main.go
+-rw-r--r--   1 Akira  staff   145 11 19 20:56 this.README
+Akira@MBP 07LoveOnTech % go mod init queryrow
+go: creating new go.mod: module queryrow
+go: to add module requirements and sums:
+	go mod tidy
+Akira@MBP 07LoveOnTech % go mod tidy
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.9
+Akira@MBP 07LoveOnTech % ls
+total 32
+drwxr-xr-x   6 Akira  staff   192 11 20 00:38 ./
+drwxr-xr-x  10 Akira  staff   320 11 19 20:47 ../
+-rw-r--r--   1 Akira  staff    70 11 20 00:38 go.mod
+-rw-r--r--   1 Akira  staff   175 11 20 00:38 go.sum
+-rw-r--r--   1 Akira  staff  2301 11 20 00:37 main.go
+-rw-r--r--   1 Akira  staff   145 11 19 20:56 this.README
+Akira@MBP 07LoveOnTech % cat go.mod
+module queryrow
+
+go 1.16
+
+require github.com/mattn/go-sqlite3 v1.14.9
+Akira@MBP 07LoveOnTech % cat go.sum
+github.com/mattn/go-sqlite3 v1.14.9 h1:10HX2Td0ocZpYEjhilsuo6WWtUqttj2Kb0KtD86/KYA=
+github.com/mattn/go-sqlite3 v1.14.9/go.mod h1:NyWgC/yNuGj7Q9rpYnZvas74GogHl5/Z4A/KQRfk6bU=
+Akira@MBP 07LoveOnTech % go build
+# queryrow
+./main.go:21:7: invalid character U+3000 in identifier
+./main.go:21:13: syntax error: unexpected literal "johnson123", expecting comma or }
+./main.go:58:12: no new variables on left side of :=
+Akira@MBP 07LoveOnTech % go build
+Akira@MBP 07LoveOnTech % ls
+total 13344
+drwxr-xr-x   8 Akira  staff      256 11 20 00:40 ./
+drwxr-xr-x  10 Akira  staff      320 11 19 20:47 ../
+-rw-r--r--   1 Akira  staff       70 11 20 00:38 go.mod
+-rw-r--r--   1 Akira  staff      175 11 20 00:38 go.sum
+-rw-r--r--   1 Akira  staff     2298 11 20 00:39 main.go
+-rw-r--r--   1 Akira  staff     2301 11 20 00:37 main.go~
+-rwxr-xr-x   1 Akira  staff  6807912 11 20 00:40 queryrow*
+-rw-r--r--   1 Akira  staff      145 11 19 20:56 this.README
+Akira@MBP 07LoveOnTech % ./queryrow
+[+]Save data to SQLite ...
+[+]Succeeded to save userInfo
+[+]Checking if login info matches... xxx@example.com  :  123
+[+]Match!:  xxx@example.com  :  123
+[+]UserId id johnson123
+Akira@MBP 07LoveOnTech % 
+
+Process shell finished
+
+
+Akira@MBP 01LoT % ls
+total 13360
+drwxr-xr-x  8 Akira  staff      256 11 20 01:19 ./
+drwxr-xr-x  4 Akira  staff      128 11 20 01:19 ../
+-rw-r--r--  1 Akira  staff     2261 11 20 00:41 07.README
+-rw-r--r--  1 Akira  staff    12288 11 20 00:40 database.db
+-rw-r--r--  1 Akira  staff       70 11 20 00:38 go.mod
+-rw-r--r--  1 Akira  staff      175 11 20 00:38 go.sum
+-rw-r--r--  1 Akira  staff     3041 11 20 01:16 main.go
+-rwxr-xr-x  1 Akira  staff  6808072 11 20 01:19 queryrow*
+Akira@MBP 01LoT % ./queryrow 
+[+]Save data to SQLite ...
+[+]Succeeded to save userInfo
+[+]Checking if login info matches... xxx@example.com  :  123
+[+]Match!:  xxx@example.com  :  123
+[+]UserId id johnson123
+[+]Checking if UID matches... johnson123
+[+]UserId id johnson123 exist.
+[+]Checking if UID matches... gomashio
+[+]UserId id gomashio not exist.
+Akira@MBP 01LoT %
