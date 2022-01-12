@@ -1,0 +1,114 @@
+
+Golang SQLite Simple Example
+John Pili
+10 Mar 2020
+
+https://www.codeproject.com/Articles/5261771/Golang-SQLite-Simple-Example
+
+
+gccとsqlite3があったからたまたま出来た。 -----------------
+
+Akira@MBP golang-sqlite02 % type gcc
+gcc is /usr/bin/gcc
+Akira@MBP golang-sqlite02 % gcc -v
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/4.2.1
+Apple clang version 13.0.0 (clang-1300.0.29.3)
+Target: x86_64-apple-darwin20.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+Akira@MBP golang-sqlite02 % type sqlite3
+sqlite3 is /usr/bin/sqlite3
+
+Akira@MBP golang-sqlite02 % sqlite3
+SQLite version 3.32.3 2020-06-18 14:16:19
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> ^D
+Akira@MBP golang-sqlite02 %
+-----------------------------------------------------
+
+
+
+
+Akira@MBP golang-sqlite % go mod init golang-sqlite
+go: creating new go.mod: module golang-sqlite
+go: to add module requirements and sums:
+	go mod tidy
+Akira@MBP golang-sqlite % cat go.mod
+module golang-sqlite
+
+go 1.16
+Akira@MBP golang-sqlite % go mod tidy
+go: finding module for package github.com/mattn/go-sqlite3
+go: downloading github.com/mattn/go-sqlite3 v1.14.9
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.9
+Akira@MBP golang-sqlite % cat go.mod
+module golang-sqlite
+
+go 1.16
+
+require github.com/mattn/go-sqlite3 v1.14.9
+Akira@MBP golang-sqlite % go build
+Akira@MBP golang-sqlite % go build
+Akira@MBP golang-sqlite % ls
+total 13376
+drwxr-xr-x  7 Akira  staff      224 11 18 23:37 ./
+drwxr-xr-x  3 Akira  staff       96 11 18 23:06 ../
+-rw-r--r--  1 Akira  staff       75 11 18 23:11 go.mod
+-rw-r--r--  1 Akira  staff      175 11 18 23:11 go.sum
+-rwxr-xr-x  1 Akira  staff  6829640 11 18 23:37 golang-sqlite*
+-rw-r--r--  1 Akira  staff     2251 11 18 23:37 main.go
+-rw-r--r--  1 Akira  staff      459 11 18 23:10 main.go~
+Akira@MBP golang-sqlite % ./golang-sqlite
+2021/11/18 23:37:39 Ceating sqlite-database.db...
+2021/11/18 23:37:39 sqlite-database.db created
+2021/11/18 23:37:39 Create student table...
+2021/11/18 23:37:39 student table created
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Inserting student record ...
+2021/11/18 23:37:39 Student:  0004   Alayna Armitage   PHD
+2021/11/18 23:37:39 Student:  0006   Derrick Griffiths   Master
+2021/11/18 23:37:39 Student:  0002   Glen Rangel   Bachelor
+2021/11/18 23:37:39 Student:  0009   Klay Correa   Bachelor
+2021/11/18 23:37:39 Student:  0007   Leigh Daly   Bachelor
+2021/11/18 23:37:39 Student:  0001   Liana Kim   Bachelor
+2021/11/18 23:37:39 Student:  0005   Marni Benson   Bachelor
+2021/11/18 23:37:39 Student:  0008   Marni Benson   PHD
+2021/11/18 23:37:39 Student:  0003   Martin Martins   Master
+Akira@MBP golang-sqlite %
+
+
+
+なんでsql.Openのエラーを見てないのか?
+//sqliteDatabase, _ := sql.Open("sqlite3", dbfile)
+sqliteDatabase, sm := sql.Open("sqlite3", dbfile)
+fmt.Println(sqliteDatabase, sm)
+
+file読み込み専用にしてみた　openはerrでない
+Akira@MBP golang-sqlite02 % ./golang-sqlite 
+&{0 {db/sqlite-database.db 0xc000024040} 0 {0 0} [] map[] 0 0 0xc00006a0c0 false map[] map[] 0 0 0 0 <nil> 0 0 0 0 0x4090ca0} <nil>
+2021/11/19 00:29:19 Create student table...
+2021/11/19 00:29:19 unable to open database file: permission denied
+
+db/ 書き込み不可にしてみた openはerrでない
+Akira@MBP golang-sqlite02 % ./golang-sqlite 
+&{0 {db/sqlite-database.db 0xc000024040} 0 {0 0} [] map[] 0 0 0xc00006a0c0 false map[] map[] 0 0 0 0 <nil> 0 0 0 0 0x4090ca0} <nil>
+2021/11/19 00:30:31 Create student table...
+2021/11/19 00:30:31 unable to open database file: no such file or directory
+Akira@MBP golang-sqlite02 %
+
+
+
+
+
+
+
