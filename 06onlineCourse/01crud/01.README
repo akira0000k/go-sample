@@ -1,0 +1,274 @@
+Akira@MBP 01urud % cd ..
+Akira@MBP 06onlineCourse % cd 01crud/
+Akira@MBP 01crud % ls
+total 16
+drwxr-xr-x  4 Akira  staff   128 11 19 01:31 ./
+drwxr-xr-x  4 Akira  staff   128 11 19 01:32 ../
+-rw-r--r--  1 Akira  staff  1440 11 19 01:31 main.go
+-rw-r--r--  1 Akira  staff   437 11 19 01:14 main.go~
+Akira@MBP 01crud % go mod init 01crud
+go: creating new go.mod: module 01crud
+go: to add module requirements and sums:
+	go mod tidy
+Akira@MBP 01crud % go mod tidy
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.9
+Akira@MBP 01crud % cat go.mod
+module 01crud
+
+go 1.16
+
+require github.com/mattn/go-sqlite3 v1.14.9
+Akira@MBP 01crud % go build
+# 01crud
+./main.go:76:2: row declared but not used
+Akira@MBP 01crud % go build
+Akira@MBP 01crud % ls
+total 13336
+drwxr-xr-x  7 Akira  staff      224 11 19 01:34 ./
+drwxr-xr-x  4 Akira  staff      128 11 19 01:32 ../
+-rwxr-xr-x  1 Akira  staff  6807752 11 19 01:34 01crud*
+-rw-r--r--  1 Akira  staff       68 11 19 01:32 go.mod
+-rw-r--r--  1 Akira  staff      175 11 19 01:32 go.sum
+-rw-r--r--  1 Akira  staff     1473 11 19 01:34 main.go
+-rw-r--r--  1 Akira  staff     1440 11 19 01:31 main.go~
+Akira@MBP 01crud % ./01crud 
+Nancy 20
+Mike 25
+Nancy 20
+Akira@MBP 01crud % ls
+total 13352
+drwxr-xr-x  8 Akira  staff      256 11 19 01:34 ./
+drwxr-xr-x  4 Akira  staff      128 11 19 01:32 ../
+-rwxr-xr-x  1 Akira  staff  6807752 11 19 01:34 01crud*
+-rw-r--r--  1 Akira  staff     8192 11 19 01:34 example.sql
+-rw-r--r--  1 Akira  staff       68 11 19 01:32 go.mod
+-rw-r--r--  1 Akira  staff      175 11 19 01:32 go.sum
+-rw-r--r--  1 Akira  staff     1473 11 19 01:34 main.go
+-rw-r--r--  1 Akira  staff     1440 11 19 01:31 main.go~
+Akira@MBP 01crud % sqlite3
+SQLite version 3.32.3 2020-06-18 14:16:19
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open example.sql 
+sqlite> .table
+person
+sqlite> select * from person;
+Nancy|20
+Mike|25
+sqlite> ^D
+Akira@MBP 01crud %
+
+
+
+
+
+
+Akira@MBP 01crud % ./01crud 
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Akira@MBP 01crud % ./01crud 
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Akira@MBP 01crud % ./01crud 
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Akira@MBP 01crud % go build
+Akira@MBP 01crud % ./01crud 
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ls
+total 13360
+drwxr-xr-x  9 Akira  staff      288 11 19 10:36 ./
+drwxr-xr-x  4 Akira  staff      128 11 19 01:32 ../
+-rw-r--r--  1 Akira  staff     2076 11 19 01:36 01.README
+-rwxr-xr-x  1 Akira  staff  6807728 11 19 10:34 01crud*
+-rw-r--r--  1 Akira  staff     8192 11 19 10:34 example.sql
+-rw-r--r--  1 Akira  staff       68 11 19 01:32 go.mod
+-rw-r--r--  1 Akira  staff      175 11 19 01:32 go.sum
+-rw-r--r--  1 Akira  staff     2013 11 19 10:36 main.go
+-rw-r--r--  1 Akira  staff     1473 11 19 01:34 main.go~
+Akira@MBP 01crud % rm example.sql
+Akira@MBP 01crud % ./01crud 
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud % ./01crud 
+Mike 25
+Mike 25
+Mike 25
+Nancy 20
+Mike 25
+Nancy 20
+Mike 25
+Mike 25
+Mike 25
+Mike 25
+Akira@MBP 01crud %
