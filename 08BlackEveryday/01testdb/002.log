@@ -1,0 +1,78 @@
+|
+Akira@MBP 01testdb % go build
+|
+Akira@MBP 01testdb % ls
+total 13464
+drwxr-xr-x  11 Akira  staff      352  1 14 17:45 ./
+drwxr-xr-x   5 Akira  staff      160  1 12 19:38 ../
+-rw-r--r--   1 Akira  staff     1181  1 12 19:43 001.log
+-rw-r--r--   1 Akira  staff     1156  1 12 19:43 001.log~
+-rw-r--r--   1 Akira  staff     6506 11 20 18:44 01.README
+-rwxr-xr-x   1 Akira  staff  6859040  1 14 17:45 01testdb*
+-rw-r--r--   1 Akira  staff       97  1 12 19:41 go.mod
+-rw-r--r--   1 Akira  staff      177  1 12 19:41 go.sum
+-rw-r--r--   1 Akira  staff     3262  1 14 11:26 main.go
+-rw-r--r--   1 Akira  staff     3193  1 14 00:13 main.go~
+-rw-r--r--   1 Akira  staff        0  1 14 00:16 test.db
+|
+Akira@MBP 01testdb % ./01testdb 
+main start
+2022/01/14 17:45:40 Creating ./test.db ...
+2022/01/14 17:45:40 ./test.db  created
+res.LastInsertId: 123
+res.LastInsertId: 456
+id: 123, title: 伝染るんです
+id: 456, title: 熊のプーさん
+affected by update: 1
+id: 456, title: 熊のプー太郎
+affected by delete: 1
+Not found
+id: 123, title: 伝染るんです
+
+|
+Akira@MBP 01testdb % ls
+total 13480
+drwxr-xr-x  11 Akira  staff      352  1 14 17:45 ./
+drwxr-xr-x   5 Akira  staff      160  1 12 19:38 ../
+-rw-r--r--   1 Akira  staff     1181  1 12 19:43 001.log
+-rw-r--r--   1 Akira  staff     1156  1 12 19:43 001.log~
+-rw-r--r--   1 Akira  staff     6506 11 20 18:44 01.README
+-rwxr-xr-x   1 Akira  staff  6859040  1 14 17:45 01testdb*
+-rw-r--r--   1 Akira  staff       97  1 12 19:41 go.mod
+-rw-r--r--   1 Akira  staff      177  1 12 19:41 go.sum
+-rw-r--r--   1 Akira  staff     3262  1 14 11:26 main.go
+-rw-r--r--   1 Akira  staff     3193  1 14 00:13 main.go~
+-rw-r--r--   1 Akira  staff     8192  1 14 17:45 test.db
+|
+Akira@MBP 01testdb % ./01testdb 
+main start
+2022/01/14 17:45:51 Creating ./test.db ...
+2022/01/14 17:45:51 ./test.db  created
+res.LastInsertId: 123
+res.LastInsertId: 456
+id: 123, title: 伝染るんです
+id: 456, title: 熊のプーさん
+affected by update: 1
+id: 456, title: 熊のプー太郎
+affected by delete: 1
+Not found
+id: 123, title: 伝染るんです
+
+|
+Akira@MBP 01testdb % ls
+total 13480
+drwxr-xr-x  11 Akira  staff      352  1 14 17:45 ./
+drwxr-xr-x   5 Akira  staff      160  1 12 19:38 ../
+-rw-r--r--   1 Akira  staff     1181  1 12 19:43 001.log
+-rw-r--r--   1 Akira  staff     1156  1 12 19:43 001.log~
+-rw-r--r--   1 Akira  staff     6506 11 20 18:44 01.README
+-rwxr-xr-x   1 Akira  staff  6859040  1 14 17:45 01testdb*
+-rw-r--r--   1 Akira  staff       97  1 12 19:41 go.mod
+-rw-r--r--   1 Akira  staff      177  1 12 19:41 go.sum
+-rw-r--r--   1 Akira  staff     3262  1 14 11:26 main.go
+-rw-r--r--   1 Akira  staff     3193  1 14 00:13 main.go~
+-rw-r--r--   1 Akira  staff     8192  1 14 17:45 test.db
+|
+Akira@MBP 01testdb % 
+
+Process shell finished

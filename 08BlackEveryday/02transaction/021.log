@@ -1,0 +1,116 @@
+|
+Akira@MBP 02transaction % ls
+total 8
+drwxr-xr-x  3 Akira  staff    96  1 14 20:16 ./
+drwxr-xr-x  5 Akira  staff   160  1 12 19:38 ../
+-rw-r--r--  1 Akira  staff  1329  1 14 20:13 main.go
+|
+Akira@MBP 02transaction % go mod init
+go: creating new go.mod: module go-sample/08BlackEveryday/02transaction
+go: to add module requirements and sums:
+	go mod tidy
+|
+Akira@MBP 02transaction % go mod tidy
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.10
+|
+Akira@MBP 02transaction % cat go.mod
+module go-sample/08BlackEveryday/02transaction
+
+go 1.16
+
+require github.com/mattn/go-sqlite3 v1.14.10
+|
+Akira@MBP 02transaction % go build
+|
+Akira@MBP 02transaction % ./02transaction 
+** start transact ** 
+id: 16421590380, title: title-0
+id: 16421590381, title: title-1
+id: 16421590382, title: title-2
+id: 16421590383, title: title-3
+id: 16421590384, title: title-4
+id: 16421590385, title: title-5
+id: 16421590386, title: title-6
+id: 16421590387, title: title-7
+id: 16421590388, title: title-8
+id: 16421590389, title: title-9
+id: 164215903810, title: title-10
+id: 164215903811, title: title-11
+id: 164215903812, title: title-12
+id: 164215903813, title: title-13
+id: 164215903814, title: title-14
+id: 164215903815, title: title-15
+16 records found
+** END **
+|
+Akira@MBP 02transaction % ./02transaction roll
+** start transact ** roll
+id: 16421590380, title: title-0
+id: 16421590381, title: title-1
+id: 16421590382, title: title-2
+id: 16421590383, title: title-3
+id: 16421590384, title: title-4
+id: 16421590385, title: title-5
+id: 16421590386, title: title-6
+id: 16421590387, title: title-7
+id: 16421590388, title: title-8
+id: 16421590389, title: title-9
+id: 164215903810, title: title-10
+id: 164215903811, title: title-11
+id: 164215903812, title: title-12
+id: 164215903813, title: title-13
+id: 164215903814, title: title-14
+id: 164215903815, title: title-15
+16 records found
+** END **
+|
+Akira@MBP 02transaction % ./02transaction
+** start transact ** 
+id: 16421590380, title: title-0
+id: 16421590381, title: title-1
+id: 16421590382, title: title-2
+id: 16421590383, title: title-3
+id: 16421590384, title: title-4
+id: 16421590385, title: title-5
+id: 16421590386, title: title-6
+id: 16421590387, title: title-7
+id: 16421590388, title: title-8
+id: 16421590389, title: title-9
+id: 16421590520, title: title-0
+id: 16421590521, title: title-1
+id: 16421590522, title: title-2
+id: 16421590523, title: title-3
+id: 16421590524, title: title-4
+id: 16421590525, title: title-5
+id: 16421590526, title: title-6
+id: 16421590527, title: title-7
+id: 16421590528, title: title-8
+id: 16421590529, title: title-9
+id: 164215903810, title: title-10
+id: 164215903811, title: title-11
+id: 164215903812, title: title-12
+id: 164215903813, title: title-13
+id: 164215903814, title: title-14
+id: 164215903815, title: title-15
+id: 164215905210, title: title-10
+id: 164215905211, title: title-11
+id: 164215905212, title: title-12
+id: 164215905213, title: title-13
+id: 164215905214, title: title-14
+id: 164215905215, title: title-15
+32 records found
+** END **
+|
+Akira@MBP 02transaction % ls
+total 13368
+drwxr-xr-x  9 Akira  staff      288  1 14 20:18 ./
+drwxr-xr-x  5 Akira  staff      160  1 12 19:38 ../
+-rw-r--r--  1 Akira  staff     3148  1 14 20:17 021.log
+-rwxr-xr-x  1 Akira  staff  6816640  1 14 20:17 02transaction*
+-rw-r--r--  1 Akira  staff      102  1 14 20:17 go.mod
+-rw-r--r--  1 Akira  staff      177  1 14 20:17 go.sum
+-rw-r--r--  1 Akira  staff     1329  1 14 20:13 main.go
+-rw-r--r--  1 Akira  staff     8192  1 14 20:17 test.db
+|
+Akira@MBP 02transaction % 

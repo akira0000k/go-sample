@@ -1,0 +1,42 @@
+|
+Akira@MBP 01testdb % go mod init
+go: creating new go.mod: module go-sample/08BlackEveryday/01testdb
+go: to add module requirements and sums:
+	go mod tidy
+|
+Akira@MBP 01testdb % go mod tidy
+go: finding module for package github.com/mattn/go-sqlite3
+go: found github.com/mattn/go-sqlite3 in github.com/mattn/go-sqlite3 v1.14.10
+|
+Akira@MBP 01testdb % cat go.mod
+module go-sample/08BlackEveryday/01testdb
+
+go 1.16
+
+require github.com/mattn/go-sqlite3 v1.14.10
+|
+Akira@MBP 01testdb % go build
+|
+Akira@MBP 01testdb % ./01testdb 
+res.LastInsertId: 123
+id: 123, title: title
+affected by update: 1
+id: 123, title: update title
+affected by delete: 1
+Not found
+
+|
+Akira@MBP 01testdb % ls
+total 13416
+drwxr-xr-x  8 Akira  staff      256  1 12 19:41 ./
+drwxr-xr-x  5 Akira  staff      160  1 12 19:38 ../
+-rw-r--r--  1 Akira  staff     6506 11 20 18:44 01.README
+-rwxr-xr-x  1 Akira  staff  6837744  1 12 19:41 01testdb*
+-rw-r--r--  1 Akira  staff       97  1 12 19:41 go.mod
+-rw-r--r--  1 Akira  staff      177  1 12 19:41 go.sum
+-rw-r--r--  1 Akira  staff     2177 11 20 18:43 main.go
+-rw-r--r--  1 Akira  staff     8192  1 12 19:41 test.db
+|
+Akira@MBP 01testdb % 
+
+Process shell finished
