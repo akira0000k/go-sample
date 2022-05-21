@@ -1,0 +1,7 @@
+.DS_Store
+*.db
+*.sql
+*.sql3
+*.sum
+*.bak
+*~
